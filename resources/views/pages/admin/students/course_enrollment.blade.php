@@ -85,9 +85,9 @@
                                                     @foreach ($students as $item)
                                                         <tr>
                                                             <th>#00{{ $item->id }}</th>
-                                                            <td>{{ $item->name }}</td>
-                                                            <td>{{ $item->email }}</td>
-                                                            <td>{{ $item->phone }}</td>
+                                                            <td>{{ $item->user->name }}</td>
+                                                            <td>{{ $item->user->email }}</td>
+                                                            <td>{{ $item->user->phone}}</td>
                                                             <td>
                                                                 {{ Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i:s') }}
                                                             </td>

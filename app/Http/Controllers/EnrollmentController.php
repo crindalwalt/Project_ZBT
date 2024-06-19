@@ -96,6 +96,41 @@ class EnrollmentController extends Controller
         return redirect()->route("account");
     }
 
+
+
+
+    public function all_enrollments (){
+        $data['enrollments'] = Enrollment::latest()->get();
+        return view("pages.admin.students.enrollment_all")->with($data);
+    }
+
+    public function course_enrollment (Course $course){
+        $data['students'] = $course->students ;
+        return view("pages.admin.students.course_enrollment")->with($data);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Show the form for creating a new resource.
      */

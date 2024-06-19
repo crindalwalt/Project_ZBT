@@ -103,7 +103,7 @@
                                                             {{--  TODO: update student info--}}
                                                             <ul class="rbt-meta">
                                                                 <li><i class="feather-calendar"></i>{{ $item->duration }} Months</li>
-                                                                <li><i class="feather-users"></i>40 Students</li>
+                                                                <a href="{{ route("course_enrollments",$item->slug)}}"><li><i class="feather-users"></i>{{ count($item->students)}} Students</li></a>
                                                             </ul>
 
                                                             <div class="rbt-card-bottom">

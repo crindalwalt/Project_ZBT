@@ -27,6 +27,12 @@ class DatabaseSeeder extends Seeder
             "role" => 0,
         ]);
 
+        User::factory()->create([
+            'name' => "Teacher Khan",
+            'email' => 'teacher@zbt.com',
+            'role' => 2,
+        ]);
+
 
         $this->call([
             CourseSeeder::class,

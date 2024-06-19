@@ -14,9 +14,7 @@
                         </li>
                         <li><a href="instructor-profile.html"><i class="feather-user"></i><span>My Profile</span></a>
                         </li>
-                        <li><a href="instructor-enrolled-courses.html"><i class="feather-book-open"></i><span>Enrolled
-                                    Courses</span></a>
-                        </li>
+                        
                         <li><a href="instructor-wishlist.html"><i class="feather-bookmark"></i><span>Wishlist</span></a>
                         </li>
                         <li><a href="instructor-reviews.html"><i class="feather-star"></i><span>Reviews</span></a></li>
@@ -29,6 +27,9 @@
 
                         <li><a href="{{ route('all_students') }}"><i class="feather-shopping-bag"></i><span>All
                                     Students</span></a>
+                        </li>
+                        <li><a href="{{ route("enrollment.show_all") }}"><i class="feather-book-open"></i><span>Enrollements
+                                    </span></a>
                         </li>
                     </ul>
                 </nav>

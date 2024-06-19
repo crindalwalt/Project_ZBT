@@ -62,45 +62,53 @@
                             <div class="rbt-dashboard-content bg-color-white rbt-shadow-box">
                                 <div class="content">
                                     <div class="section-title">
-                                        <h4 class="rbt-title-style-3">Order History</h4>
+                                        <h4 class="rbt-title-style-3">New Enrollments</h4>
                                     </div>
 
-                                    <div class="rbt-dashboard-table table-responsive mobile-table-750">
+                                    <div class="table-responsive rbt-dashboard-table  mobile-table-750">
                                         <table class="rbt-table table table-borderless" id="ordersTable">
+                                            <style>
+                                                th{
+                                                    padding: 0rem .5rem;
+                                                }
+                                            </style>
                                             <thead>
                                                 <tr>
                                                     <th>Order ID</th>
-                                                    <th>Customer</th>
-                                                    <th>Email</th>
-                                                    <th>Phone</th>
+                                                    <th>Student</th>
+                                                    <th>Course</th>
                                                     <th>Joined</th>
-                                                    {{-- <th>Payment</th>
-                                                    <th>Delivery</th> --}}
+                                                    <th>Expiry</th>
+                                                    <th>Payment</th>
+                                                    <th>Payment status</th>
+                                                    <th>Enrolled status</th> 
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
 
                                             <tbody>
-                                                @if ($students)
-                                                    @foreach ($students as $item)
+                                                @if ($enrollments)
+                                                    @foreach ($enrollments as $item)
                                                         <tr>
                                                             <th>#00{{ $item->id }}</th>
-                                                            <td>{{ $item->name }}</td>
-                                                            <td>{{ $item->email }}</td>
-                                                            <td>{{ $item->phone }}</td>
+                                                            <td>{{ $item->user->name }}</td>
+                                                            <td>{{ $item->course->title }}</td>
                                                             <td>
                                                                 {{ Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i:s') }}
                                                             </td>
-                                                            {{-- <td>${{ $item->email }}</td>
+                                                            <td>
+                                                                {{ Carbon\Carbon::parse($item->expire_date)->format('Y-m-d H:i:s') }}
+                                                            </td>
+                                                             <td>${{ $item->course->discount_price }}</td>
                                                         <td><span
                                                                 class="rbt-badge-5 bg-color-success-opacity color-success">{{ $item->payment_status }}</span>
                                                         </td>
                                                         <td><span
-                                                                class="rbt-badge-5 bg-color-success-opacity color-success">{{ $item->delivery_status }}</span>
-                                                        </td> --}}
+                                                                class="rbt-badge-5 bg-color-success-opacity color-success">{{ $item->enrollment_status }}</span>
+                                                        </td>
                                                             <td>
                                                                 <a href="{{ route('students.transform', $item->id) }}"
-                                                                    class="me-2 btn btn-sm btn-primary">Assign as Teacher</a>
+                                                                    class="me-2 btn btn-sm btn-primary">View Student</a>
 
                                                             </td>
                                                         </tr>

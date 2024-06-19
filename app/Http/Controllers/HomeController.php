@@ -127,10 +127,7 @@ class HomeController extends Controller
     public function all_students()
     {
         $data['students'] = User::Where("role", 1)->get();
-        // dd($data);
-
         return view("pages.admin.students.students_all")->with($data);
-        // return v
     }
 
 
