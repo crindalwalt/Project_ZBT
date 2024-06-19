@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 
-Route::middleware([AdminCheck::class,"auth","verified"])->prefix("admin")->group(function (){
+Route::middleware([AdminCheck::class,"auth","verified"])->prefix("/admin")->group(function (){
     Route::get("/",[HomeController::class,'index'])->name("admin_dashboard");
     # COURSE CRUD
     Route::get("/courses",[CourseController::class,'index'])->name("admin.courses");
@@ -40,6 +40,7 @@ Route::middleware([AdminCheck::class,"auth","verified"])->prefix("admin")->group
 
     # STUDENTS
     Route::get("/students",[HomeController::class,"all_students"])->name("all_students");
+    Route::get("/student/{user}/transform",[HomeController::class,'student_transform'])->name("students.transform");
 
 });
 

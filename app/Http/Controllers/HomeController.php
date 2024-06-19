@@ -27,10 +27,10 @@ class HomeController extends Controller
     {
         $cart = Cart::find(1);
         $user = User::find(1);
-//        dd($user->cart);
-//        dd(auth()->user()->cart);
+        //        dd($user->cart);
+        //        dd(auth()->user()->cart);
 
-//        dd(auth()->user()->cart->items);
+        //        dd(auth()->user()->cart->items);
 
 
         $data['categories'] = Category::all();
@@ -65,7 +65,7 @@ class HomeController extends Controller
                     "individual_price" => $productToAdd->discount_price,
                 ]);
             } else {
-//                $user->cart()->create();
+                //                $user->cart()->create();
                 $newCart = Cart::create([
                     "user_id" => $user->id,
                 ]);
@@ -78,8 +78,6 @@ class HomeController extends Controller
 
             Alert::success("success", "Item has been added to cart");
             return redirect()->back();
-
-
         } else {
             return redirect()->route("login");
         }
@@ -101,19 +99,16 @@ class HomeController extends Controller
     {
         $data['cart'] = auth()->user()->cart;
         return view('pages.user.checkout')->with($data);
-
     }
 
     public function account()
     {
-        if(auth()->user()->role == 0){
+        if (auth()->user()->role == 0) {
             return redirect()->route("admin_dashboard");
         }
         $data['user'] = auth()->user();
         $data['orders'] = $data['user']->order;
         return view('pages.user.account')->with($data);
-
-
     }
 
 
@@ -123,20 +118,31 @@ class HomeController extends Controller
         $pdf = PDF::loadView("pages.user.ecommerce.ecom_invoice", compact("order"))->setOptions(['defaultFont' => 'sans-serif']);
         $pdf->setPaper('A4', 'portrait');
         return $pdf->stream();
-//        return $pdf->download('invoice_' . $order->id . '.pdf');
+        //        return $pdf->download('invoice_' . $order->id . '.pdf');
 
-//        return view("pages.user.ecommerce.ecom_invoice")->with($data);
+        //        return view("pages.user.ecommerce.ecom_invoice")->with($data);
     }
 
 
-    public function all_students (){
-        $data['students'] = User::Where("role",1)->get();
-        dd($data);
+    public function all_students()
+    {
+        $data['students'] = User::Where("role", 1)->get();
+        // dd($data);
+
+        return view("pages.admin.students.students_all")->with($data);
         // return v
     }
+
+
+
+
+    public function student_transform(User $user)
+    {
+        $student = $user;
+        $student->update([
+            "role" => 2,
+        ]);
+        Alert::success("Teacher Created","$user->name has been promoted to Teacher Role , now can login ");
+        return redirect()->back();
+    }
 }
-
-
-
-
-
