@@ -16,7 +16,7 @@
                                     <li class="has-child-menu">
                                         <a href="#">
                                             <img class="left-image" src="{{ asset("assets/images/icons/en-us.png") }}"
-                                                 alt="Language Images">
+                                                alt="Language Images">
                                             <span class="menu-item">English</span>
                                         </a>
                                     </li>
@@ -88,7 +88,7 @@
                                                     <div class="rbt-admin-profile">
                                                         <div class="admin-thumbnail">
                                                             <img src="{{ asset("assets/images/team/avatar.jpg") }}"
-                                                                 alt="User Images">
+                                                                alt="User Images">
                                                         </div>
                                                         <div class="admin-info">
                                                             <span class="name">{{ auth()->user()->name }}</span>
@@ -193,7 +193,7 @@
                                                     <div class="rbt-admin-profile">
                                                         <div class="admin-thumbnail">
                                                             <img src="{{ asset("assets/images/team/avatar.jpg") }}"
-                                                                 alt="User Images">
+                                                                alt="User Images">
                                                         </div>
                                                         <div class="admin-info">
                                                             <span class="name">{{ auth()->user()->name }}</span>
@@ -344,15 +344,13 @@
                     <div class="header-right">
                         @if(auth()->check())
                             <div class="rbt-btn-wrapper d-none d-xl-block">
-                                <a class="rbt-btn  btn-gradient btn-sm hover-transform-none"
-                                   href="{{ route("account") }}">
+                                <a class="rbt-btn  btn-gradient btn-sm hover-transform-none" href="{{ route("account") }}">
                                     <span data-text="Join Now">My Account</span>
                                 </a>
                             </div>
                         @else
                             <div class="rbt-btn-wrapper d-none d-xl-block">
-                                <a class="rbt-btn   btn-gradient btn-sm hover-transform-none"
-                                   href="{{ route("login") }}">
+                                <a class="rbt-btn   btn-gradient btn-sm hover-transform-none" href="{{ route("login") }}">
                                     <span data-text="Join Now">Login / Signup</span>
                                 </a>
                             </div>
@@ -431,16 +429,24 @@
             <div class="mobile-menu-bottom">
 
                 @if(auth()->check())
+                    @if(auth()->user()->role == 0)
+                        <div class="rbt-btn-wrapper mb--20">
+                            <a class="rbt-btn btn-border-gradient radius-round btn-sm hover-transform-none w-100 justify-content-center text-center"
+                                href="{{ route("admin_dashboard") }}">
+                                <span>My Account</span>
+                            </a>
+                        </div>
+                    @endif
                     <div class="rbt-btn-wrapper mb--20">
                         <a class="rbt-btn btn-border-gradient radius-round btn-sm hover-transform-none w-100 justify-content-center text-center"
-                           href="{{ route("account") }}">
+                            href="{{ route("account") }}">
                             <span>My Account</span>
                         </a>
                     </div>
                 @else
                     <div class="rbt-btn-wrapper mb--20">
                         <a class="rbt-btn btn-border-gradient radius-round btn-sm hover-transform-none w-100 justify-content-center text-center"
-                           href="{{ route("login") }}">
+                            href="{{ route("login") }}">
                             <span>Login / Signup</span>
                         </a>
                     </div>
@@ -470,7 +476,7 @@
 
         </div>
     </div>
-    {{--    <x-utils.cart/>--}}
+    {{-- <x-utils.cart />--}}
     @livewire('cart-box')
 
 </div>

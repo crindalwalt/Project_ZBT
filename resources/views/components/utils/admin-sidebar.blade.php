@@ -28,6 +28,10 @@
                         <li><a href="instructor-order-history.html"><i
                                     class="feather-shopping-bag"></i><span>Order History</span></a>
                         </li>
+
+                        <li><a href="{{ route("all_students")}}"><i
+                                    class="feather-shopping-bag"></i><span>All Students</span></a>
+                        </li>
                     </ul>
                 </nav>
 

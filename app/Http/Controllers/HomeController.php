@@ -106,6 +106,9 @@ class HomeController extends Controller
 
     public function account()
     {
+        if(auth()->user()->role == 0){
+            return redirect()->route("admin_dashboard");
+        }
         $data['user'] = auth()->user();
         $data['orders'] = $data['user']->order;
         return view('pages.user.account')->with($data);
@@ -123,6 +126,13 @@ class HomeController extends Controller
 //        return $pdf->download('invoice_' . $order->id . '.pdf');
 
 //        return view("pages.user.ecommerce.ecom_invoice")->with($data);
+    }
+
+
+    public function all_students (){
+        $data['students'] = User::Where("role",1)->get();
+        dd($data);
+        // return v
     }
 }
 

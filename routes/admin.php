@@ -37,6 +37,10 @@ Route::middleware([AdminCheck::class,"auth","verified"])->prefix("admin")->group
     Route::get("/orders", [OrderController::class, 'index'])->name("order.index");
     Route::get("/order/{order}/detail", [OrderController::class, 'show'])->name("order.detail");
 
+
+    # STUDENTS
+    Route::get("/students",[HomeController::class,"all_students"])->name("all_students");
+
 });
 
 
