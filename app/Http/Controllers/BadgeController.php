@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBadgeRequest;
 use App\Http\Requests\UpdateBadgeRequest;
 use App\Models\Badge;
+use App\Models\Course;
+use App\Models\User;
 
 class BadgeController extends Controller
 {
@@ -22,7 +24,9 @@ class BadgeController extends Controller
      */
     public function create()
     {
-        //
+        $data['courses'] = Course::all();
+        $data['teachers'] = User::where("role",2)->get();
+        return view("pages.admin.students.badge_create")->with($data);
     }
 
     /**

@@ -59,70 +59,19 @@
 
                         <div class="col-lg-9">
                             <!-- Start Enrole Course  -->
-                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box">
+                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box mb-5">
                                 <div class="content">
                                     <div class="section-title">
                                         <h4 class="rbt-title-style-3">Create a new badges</h4>
-                                        <a class="btn btn-lg btn-primary px-5 py-3" href="{{ route("badge.create")}}">Create Badge</a>
+                                        <!-- <a class="btn btn-lg btn-primary px-5 py-3" href="{{ route("badge.create")}}">Create Badge</a> -->
                                     </div>
 
-                                    
+
                                 </div>
                             </div>
                             <!-- End Enrole Course  -->
                             <!-- Start Enrole Course  -->
-                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box">
-                                <div class="content">
-                                    <div class="section-title">
-                                        <h4 class="rbt-title-style-3">All Badges</h4>
-                                    </div>
-
-                                    <div class="rbt-dashboard-table table-responsive mobile-table-750">
-                                        <table class="rbt-table table table-borderless" id="ordersTable">
-                                            <thead>
-                                                <tr>
-                                                    <th>Badge ID</th>
-                                                    <th>Name</th>
-                                                    <th>course</th>
-                                                    <th>students</th>
-                                                    <th>Class Time</th>
-                                                    <th>Actions</th>
-                                                </tr>
-                                            </thead>
-
-                                            <tbody>
-                                                @if ($badges)
-                                                    @foreach ($badges as $item)
-                                                        <tr>
-                                                            <th>#00{{ $item->id }}</th>
-                                                            <td>{{ $item->name }}</td>
-                                                            <td>{{ $item->course->title }}</td>
-                                                            <td>{{ count($item->badgeStudents) }}</td>
-                                                            <td>
-                                                                {{ Carbon\Carbon::parse($item->class_time)->format('H:i:s') }}
-                                                            </td>
-                                                            {{-- <td>${{ $item->email }}</td>
-                                                        <td><span
-                                                                class="rbt-badge-5 bg-color-success-opacity color-success">{{ $item->payment_status }}</span>
-                                                        </td>
-                                                        <td><span
-                                                                class="rbt-badge-5 bg-color-success-opacity color-success">{{ $item->delivery_status }}</span>
-                                                        </td> --}}
-                                                            <td>
-                                                                <a href="{{ route('students.transform', $item->id) }}"
-                                                                    class="me-2 btn btn-sm btn-primary">Assign as Teacher</a>
-
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @endif
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                </div>
-                            </div>
+                            @livewire("add-badge")
                             <!-- End Enrole Course  -->
                         </div>
                     </div>
