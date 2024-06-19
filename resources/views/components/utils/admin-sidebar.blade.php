@@ -18,9 +18,7 @@
                         <li><a href="instructor-wishlist.html"><i class="feather-bookmark"></i><span>Wishlist</span></a>
                         </li>
                         <li><a href="instructor-reviews.html"><i class="feather-star"></i><span>Reviews</span></a></li>
-                        <li><a href="instructor-my-quiz-attempts.html"><i class="feather-help-circle"></i><span>My Quiz
-                                    Attempts</span></a>
-                        </li>
+                        
                         <li><a href="{{ route('order.index') }}"><i class="feather-shopping-bag"></i><span>Order
                                     History</span></a>
                         </li>
@@ -30,6 +28,10 @@
                         </li>
                         <li><a href="{{ route("enrollment.show_all") }}"><i class="feather-book-open"></i><span>Enrollements
                                     </span></a>
+                        </li>
+                        <li><a href="{{ route("badges.all")}}"><i class="feather-help-circle"></i><span>
+                            Badges
+                        </span></a>
                         </li>
                     </ul>
                 </nav>

@@ -41,6 +41,8 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             CartSeeder::class,
             OrderSeeder::class,
+            BadgeSeeder::class,
+            BadgeStudentsSeeder::class,
         ]);
     }
 }

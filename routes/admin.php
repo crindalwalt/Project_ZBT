@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BadgeController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\OrderController;
@@ -47,6 +48,10 @@ Route::middleware([AdminCheck::class,"auth","verified"])->prefix("/admin")->grou
     # ENROLLMENTS
     Route::get("/enrollments",[EnrollmentController::class, "all_enrollments"])->name("enrollment.show_all");
     Route::get("/enrollment/{course:slug}",[EnrollmentController::class, 'course_enrollment'])->name("course_enrollments");
+
+
+    # BADGES CRUD
+    Route::Get("/badges",[BadgeController::class, 'index'])->name("badges.all");
 });
 
 
