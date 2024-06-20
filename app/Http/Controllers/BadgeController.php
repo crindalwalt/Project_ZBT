@@ -7,6 +7,8 @@ use App\Http\Requests\UpdateBadgeRequest;
 use App\Models\Badge;
 use App\Models\Course;
 use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class BadgeController extends Controller
 {
@@ -15,6 +17,8 @@ class BadgeController extends Controller
      */
     public function index()
     {
+        $data['courses'] = Course::all();
+        $data['teachers'] = User::where("role", 2)->get();
         $data['badges'] = Badge::latest()->get();
         return view("pages.admin.students.badges_all")->with($data);
     }
@@ -24,9 +28,8 @@ class BadgeController extends Controller
      */
     public function create()
     {
-        $data['courses'] = Course::all();
-        $data['teachers'] = User::where("role",2)->get();
-        return view("pages.admin.students.badge_create")->with($data);
+
+        return view("pages.admin.students.badge_create");
     }
 
     /**
@@ -34,7 +37,11 @@ class BadgeController extends Controller
      */
     public function store(StoreBadgeRequest $request)
     {
-        //
+        // dd($request->all());
+        Badge::create($request->all());
+
+        Alert::success("Badge Created Successfully ","Now add the students in their respective badges");
+        return redirect()->back();
     }
 
     /**

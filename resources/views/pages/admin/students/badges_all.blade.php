@@ -59,19 +59,70 @@
 
                         <div class="col-lg-9">
                             <!-- Start Enrole Course  -->
-                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box">
+                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box mb-5">
                                 <div class="content">
                                     <div class="section-title">
                                         <h4 class="rbt-title-style-3">Create a new badges</h4>
-                                        <a class="btn btn-lg btn-primary px-5 py-3" href="{{ route("badge.create")}}">Create Badge</a>
+                                        <form action="{{ route("badge.store")}}" method="POST">
+                                            @csrf
+                                            <div class="mb-3">
+                                                <label for="badgeName" class="form-label">Badge Name</label>
+                                                <input type="text" class="form-control" id="badgeName" name="name">
+                                                @error("name")
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="class_time" class="form-label">Choose Class Time</label>
+                                                <input type="time" class="form-control" id="class_time" name="class_time">
+                                                @error("class_time")
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="course_select" class="form-label">Select Course</label>
+                                                <select class="form-select w-100" id="course_select"
+                                                    name="course_id">
+                                                    @foreach ($courses as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->title }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error("course_id")
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="teacher_select" class="form-label">Select Teacher</label>
+                                                <select class="form-select w-100" id="teacher_select" name="teacher_id">
+                                                    @foreach ($teachers as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error("teacher_id")
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
+
+
+                                            <div class="mb-3">
+                                                <button type="submit" class="btn btn-lg btn-primary px-5 py-3 w-100">Add
+                                                    Badge</button>
+                                            </div>
+                                        </form>
                                     </div>
 
-                                    
+
                                 </div>
                             </div>
                             <!-- End Enrole Course  -->
                             <!-- Start Enrole Course  -->
                             <div class="rbt-dashboard-content bg-color-white rbt-shadow-box">
+                                <div class="content">
+
+                                </div>
                                 <div class="content">
                                     <div class="section-title">
                                         <h4 class="rbt-title-style-3">All Badges</h4>
@@ -102,12 +153,14 @@
                                                                 {{ Carbon\Carbon::parse($item->class_time)->format('H:i:s') }}
                                                             </td>
                                                             {{-- <td>${{ $item->email }}</td>
-                                                        <td><span
-                                                                class="rbt-badge-5 bg-color-success-opacity color-success">{{ $item->payment_status }}</span>
-                                                        </td>
-                                                        <td><span
-                                                                class="rbt-badge-5 bg-color-success-opacity color-success">{{ $item->delivery_status }}</span>
-                                                        </td> --}}
+                                                            <td><span
+                                                                    class="rbt-badge-5 bg-color-success-opacity color-success">{{
+                                                                    $item->payment_status }}</span>
+                                                            </td>
+                                                            <td><span
+                                                                    class="rbt-badge-5 bg-color-success-opacity color-success">{{
+                                                                    $item->delivery_status }}</span>
+                                                            </td> --}}
                                                             <td>
                                                                 <a href="{{ route('students.transform', $item->id) }}"
                                                                     class="me-2 btn btn-sm btn-primary">Assign as Teacher</a>

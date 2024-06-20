@@ -11,7 +11,7 @@ class Enrollment extends Model
 
     protected $guarded = [];
 
-    public function user()
+    public function enrolled_students()
     {
         return $this->belongsTo(User::class, 'user_id');
     }

@@ -42,6 +42,7 @@
 <x-utils.header/>
 {{ $slot }}
 <x-utils.footer/>
+@livewireScripts
 <!-- JS
 ============================================ -->
 <!-- Modernizer JS -->
@@ -78,7 +79,7 @@
 <script >
     let table = new DataTable('#ordersTable');
 </script>
-@livewireScripts
+
 </body>
 
 </html>

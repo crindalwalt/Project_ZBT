@@ -53,6 +53,7 @@ Route::middleware([AdminCheck::class,"auth","verified"])->prefix("/admin")->grou
     # BADGES CRUD
     Route::get("/badges",[BadgeController::class, 'index'])->name("badges.all");
     Route::get("/badge/create",[BadgeController::class, "create"])->name("badge.create");
+    Route::post("/badge/store",[BadgeController::class ,"store"])->name("badge.store");
 });
 
 

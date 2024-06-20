@@ -17,7 +17,11 @@ class EnrollmentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => $this->faker->numberBetween(1,10),
+            "course_id" => $this->faker->numberBetween(1,6),
+            "expire_date" => $this->faker->date(),
+            "payment_status" => "success",
+            "enrollment_status" => "active"
         ];
     }
 }

@@ -6,29 +6,55 @@ use App\Models\Course;
 use App\Models\Enrollment;
 use App\Models\User;
 use Livewire\Component;
+use Illuminate\Support\Facades\Log;
 
 class AddBadge extends Component
 {
-    public $courseSelect;
-    public $students;
-    public $teachers = User::where("role",2)->get();
-    public $courses = Course::all();
-    public $allStudents = Enrollment::latest()->get();
+    public $badgeName;
+    public $courseId;
+    public $studentIds = [];
+    public $courses = [];
+    public $students = [];
+    public $teachers = [];
 
-    public function updatedCourseSelect($value)
+    public function mount()
     {
-        $this->students = array_filter($this->allStudents, function ($student) use ($value) {
-            return $student['course_id'] == $value;
-        });
+        $this->courses = Course::all();
+        $this->teachers = User::where("role", 2)->get();
+        $this->students = collect();
     }
-    public function __construct(){
-        // $this->teachers = User::where("role",2)->get();
-        // $this->courses = Course::all();
+
+    public function updatedCourseId($value)
+    {
+        Log::info('updatedCourseId called with value: ' . $value);
+
+        // Fetch students enrolled in the selected course
+        $this->students = Enrollment::where('course_id', $value)
+                                    ->with('enrolled_students') // Assuming this is a relationship method
+                                    ->get()
+                                    ->pluck('enrolled_students')
+                                    ->flatten();
+        
+        $this->studentIds = [];
+    }
+
+    public function submit()
+    {
+        $this->validate([
+            'badgeName' => 'required|string|max:255',
+            'courseId' => 'required|exists:courses,id',
+            'studentIds' => 'required|array',
+            'studentIds.*' => 'exists:students,id',
+        ]);
+
+        // Handle the form submission logic
+        // Example: Badge::create([...]);
+        
+        session()->flash('message', 'Badge created successfully!');
     }
 
     public function render()
     {
-        
         return view('livewire.add-badge');
     }
 }

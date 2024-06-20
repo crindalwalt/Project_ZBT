@@ -11,7 +11,7 @@ class StoreBadgeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class StoreBadgeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required'],
+            'course_id' => ['required'],
+            'teacher_id' => ['required'],
+            'class_time' => ['required'],
         ];
     }
 }

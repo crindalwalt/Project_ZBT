@@ -43,6 +43,7 @@ class DatabaseSeeder extends Seeder
             OrderSeeder::class,
             BadgeSeeder::class,
             BadgeStudentsSeeder::class,
+            EnrollmentSeeder::class,
         ]);
     }
 }
