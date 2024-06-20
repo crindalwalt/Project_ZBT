@@ -10,8 +10,14 @@ class BadgeStudents extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function badge(){
+    public function badge()
+    {
         return $this->belongsTo(Badge::class, 'badge_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, "user_id");
     }
 
 }

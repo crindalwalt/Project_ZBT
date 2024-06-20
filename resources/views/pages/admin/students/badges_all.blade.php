@@ -162,8 +162,8 @@
                                                                     $item->delivery_status }}</span>
                                                             </td> --}}
                                                             <td>
-                                                                <a href="{{ route('students.transform', $item->id) }}"
-                                                                    class="me-2 btn btn-sm btn-primary">Assign as Teacher</a>
+                                                                <a href="{{ route('badge.create', $item->id) }}"
+                                                                    class="me-2 btn btn-sm btn-primary rounded-4">Assign students</a>
 
                                                             </td>
                                                         </tr>

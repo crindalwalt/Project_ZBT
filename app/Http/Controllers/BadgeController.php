@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBadgeRequest;
 use App\Http\Requests\UpdateBadgeRequest;
 use App\Models\Badge;
+use App\Models\BadgeStudents;
 use App\Models\Course;
+use App\Models\Enrollment;
 use App\Models\User;
+use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -26,10 +29,17 @@ class BadgeController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Badge $badge)
     {
+        $data['badge'] = $badge;
+        $data['students'] = Enrollment::where('course_id', $badge->course_id)
+            ->with('enrolled_students')
+            ->get()
+            ->pluck('enrolled_students')
+            ->flatten();
 
-        return view("pages.admin.students.badge_create");
+        // dd($data['students']);
+        return view("pages.admin.students.badge_create")->with($data);
     }
 
     /**
@@ -37,10 +47,8 @@ class BadgeController extends Controller
      */
     public function store(StoreBadgeRequest $request)
     {
-        // dd($request->all());
         Badge::create($request->all());
-
-        Alert::success("Badge Created Successfully ","Now add the students in their respective badges");
+        Alert::success("Badge Created Successfully ", "Now add the students in their respective badges");
         return redirect()->back();
     }
 
@@ -63,9 +71,23 @@ class BadgeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBadgeRequest $request, Badge $badge)
+    public function student_store(Request $request, Badge $badge)
     {
-        //
+        $request->validate([
+            'student_id' => ['required', 'array']
+        ]);
+        foreach ($request->student_id as $key => $value) {
+            if ($badge->badgeStudents->contains("user_id", $value)) {
+                continue;
+            }
+            $badge->badgeStudents()->create([
+                'user_id' => $value,
+            ]);
+        }
+
+
+        Alert::success("Students are added to $badge->name badge");
+        return redirect()->route("badges.all");
     }
 
     /**
@@ -74,5 +96,11 @@ class BadgeController extends Controller
     public function destroy(Badge $badge)
     {
         //
+    }
+
+    public function expel(BadgeStudents $badgeStudent){
+        $badgeStudent->delete();
+        Alert::success("Student Expeled from this badge");
+        return redirect()->back();
     }
 }
