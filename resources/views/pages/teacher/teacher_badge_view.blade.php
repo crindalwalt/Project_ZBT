@@ -58,16 +58,23 @@
                         </div>
 
                         <div class="col-lg-9">
-
                             <!-- Start Enrole Course  -->
+                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box mb-5">
+                                <div class="content">
+                                    <div class="section-title">
+                                        <h4 class="rbt-title-style-3">Manage Students for {{ $badge->name}}</h4>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
                             <div class="rbt-dashboard-content bg-color-white rbt-shadow-box">
                                 <div class="content">
 
                                 </div>
                                 <div class="content">
-                                    <div class="section-title">
-                                        <h4 class="rbt-title-style-3">All Badges</h4>
-                                    </div>
+                                    
 
                                     <div class="rbt-dashboard-table table-responsive mobile-table-750">
                                         <table class="rbt-table table table-borderless" id="ordersTable">
@@ -75,37 +82,24 @@
                                                 <tr>
                                                     <th>Badge ID</th>
                                                     <th>Name</th>
-                                                    <th>course</th>
-                                                    <th>students</th>
-                                                    <th>Class Time</th>
+                                                    <th>Enrolled at</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
 
                                             <tbody>
-                                                @if ($badges)
-                                                    @foreach ($badges as $item)
+                                                @if ($badge)
+                                                    @foreach ($badge->badgeStudents as $item)
                                                         <tr>
                                                             <th>#00{{ $item->id }}</th>
-                                                            <td>{{ $item->name }}</td>
-                                                            <td>{{ $item->course->title }}</td>
-                                                            <td>{{ count($item->badgeStudents) }}</td>
+                                                            <td>{{ $item->user->name }}</td>
                                                             <td>
-                                                                {{ Carbon\Carbon::parse($item->class_time)->format('H:i:s') }}
+                                                                {{ Carbon\Carbon::parse($item->created_at)->format('M d Y H:i:s') }}
                                                             </td>
-                                                            {{-- <td>${{ $item->email }}</td>
-                                                            <td><span
-                                                                    class="rbt-badge-5 bg-color-success-opacity color-success">{{
-                                                                    $item->payment_status }}</span>
-                                                            </td>
-                                                            <td><span
-                                                                    class="rbt-badge-5 bg-color-success-opacity color-success">{{
-                                                                    $item->delivery_status }}</span>
-                                                            </td> --}}
+
                                                             <td>
-                                                                <a href="{{ route('teacher.badge.view', $item->id) }}"
-                                                                    class="me-2 btn btn-sm btn-primary rounded-4">View
-                                                                    students</a>
+                                                                <button disabled
+                                                                    class="me-2 btn btn-md py-3 px-4 btn-danger rounded-4">Expel from Batch</button>
 
                                                             </td>
                                                         </tr>
@@ -118,7 +112,6 @@
 
                                 </div>
                             </div>
-                            <!-- End Enrole Course  -->
                         </div>
                     </div>
 
