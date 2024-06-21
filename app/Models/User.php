@@ -81,4 +81,8 @@ class User extends Authenticatable
     public function badge_teacher(){
         return $this->hasMany(Badge::class);
     }
+
+    public function enrolled_in_class(){
+        return $this->hasMany(BadgeStudents::class);
+    }
 }

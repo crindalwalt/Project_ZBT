@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Badge;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Course;
@@ -103,11 +104,12 @@ class HomeController extends Controller
 
     public function account()
     {
-        if (auth()->user()->role == 0) {
-            return redirect()->route("admin_dashboard");
+        if (auth()->user()->role != 1) {
+            abort(403, "Cannot Access student resources if not a student");
         }
         $data['user'] = auth()->user();
         $data['orders'] = $data['user']->order;
+        $data['classes'] = $data['user']->enrolled_in_class;
         return view('pages.user.account')->with($data);
     }
 
@@ -139,7 +141,15 @@ class HomeController extends Controller
         $student->update([
             "role" => 2,
         ]);
-        Alert::success("Teacher Created","$user->name has been promoted to Teacher Role , now can login ");
+        Alert::success("Teacher Created", "$user->name has been promoted to Teacher Role , now can login ");
         return redirect()->back();
+    }
+
+
+
+    public function student_class(Badge $badge)
+    {
+        $data['badge'] = $badge;
+        return view("pages.user.courses.class")->with($data);
     }
 }

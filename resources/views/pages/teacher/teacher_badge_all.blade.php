@@ -53,7 +53,7 @@
                     <div class="row g-5">
                         <div class="col-lg-3">
                             <!-- Start Dashboard Sidebar  -->
-                            <x-utils.admin-sidebar />
+                            <x-utils.teacher-sidebar />
                             <!-- End Dashboard Sidebar  -->
                         </div>
 

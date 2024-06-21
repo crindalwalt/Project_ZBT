@@ -30,8 +30,9 @@
                             <div class="rbt-my-account-tab-button nav" role="tablist">
                                 <a href="#dashboad" class="active" data-bs-toggle="tab">Dashboard</a>
                                 <a href="#orders" data-bs-toggle="tab">Orders</a>
-                                <a href="#download" data-bs-toggle="tab">Courses</a>
-{{--                                <a href="#payment-method" data-bs-toggle="tab">Payment Method</a>--}}
+                                <a href="#download" data-bs-toggle="tab">Enrollment</a>
+                                <a href="#classes" data-bs-toggle="tab">Classes</a>
+                                {{--                                <a href="#payment-method" data-bs-toggle="tab">Payment Method</a> --}}
 
                                 <a href="#address-edit" data-bs-toggle="tab">Address</a>
                                 <a href="#account-info" data-bs-toggle="tab">Account Details</a>
@@ -43,7 +44,7 @@
                                         }
                                     </style>
                                     <a class="log bg-danger text-white" :href="route('logout')"
-                                       onclick="event.preventDefault();
+                                        onclick="event.preventDefault();
                                         this.closest('form').submit();">
                                         {{ __('Log Out') }}
                                     </a>
@@ -79,36 +80,39 @@
                                         <div class="rbt-my-account-table table-responsive text-center">
                                             <table class="table table-bordered">
                                                 <thead class="thead-light">
-                                                <tr>
-                                                    <th>No</th>
-                                                    <th>Name</th>
-                                                    <th>Date</th>
-                                                    <th>Status</th>
-                                                    <th>Total</th>
-                                                    <th>Action</th>
-                                                </tr>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Name</th>
+                                                        <th>Date</th>
+                                                        <th>Status</th>
+                                                        <th>Total</th>
+                                                        <th>Action</th>
+                                                    </tr>
                                                 </thead>
 
                                                 <tbody>
-                                                @if($orders)
-                                                    @foreach($orders as $item)
-                                                        <tr>
-                                                            <td>{{ $loop->iteration }}</td>
-                                                            <td>Order#{{$item->id}}</td>
-                                                            <td>{{ Carbon\Carbon::parse($item->created_at)->format("Y-m-d") }}</td>
-                                                            <td>{{ strtoupper($item->delivery_status) }}</td>
-                                                            <td>${{$item->total_value}}</td>
-                                                            <td>
-                                                                <a class="rbt-btn btn-gradient btn-sm"
-                                                                   href="{{ route("invoice.generate",$item->id) }}">
-                                                                    Download Invoice</a>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @else
-                                                    <div><h6>No Order Found, Browse some of our products <a
-                                                                href="/shop">here</a></h6></div>
-                                                @endif
+                                                    @if ($orders)
+                                                        @foreach ($orders as $item)
+                                                            <tr>
+                                                                <td>{{ $loop->iteration }}</td>
+                                                                <td>Order#{{ $item->id }}</td>
+                                                                <td>{{ Carbon\Carbon::parse($item->created_at)->format('Y-m-d') }}
+                                                                </td>
+                                                                <td>{{ strtoupper($item->delivery_status) }}</td>
+                                                                <td>${{ $item->total_value }}</td>
+                                                                <td>
+                                                                    <a class="rbt-btn btn-gradient btn-sm"
+                                                                        href="{{ route('invoice.generate', $item->id) }}">
+                                                                        Download Invoice</a>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    @else
+                                                        <div>
+                                                            <h6>No Order Found, Browse some of our products <a
+                                                                    href="/shop">here</a></h6>
+                                                        </div>
+                                                    @endif
 
                                                 </tbody>
                                             </table>
@@ -120,41 +124,88 @@
                                 <!-- Single Tab Content Start -->
                                 <div class="tab-pane fade" id="download" role="tabpanel">
                                     <div class="rbt-my-account-inner">
+                                        <h3>Enrollments</h3>
+
+                                        <div class="rbt-my-account-table table-responsive text-center">
+                                            <table class="table table-bordered">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th>#ID</th>
+                                                        <th>Class Name</th>
+                                                        <th>Class Time</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (auth()->user()->enrollment as $item)
+                                                        @if ($item->enrollment_status != 'active')
+                                                            @continue
+                                                        @endif
+                                                        <tr>
+                                                            <td>{{ $item->course->title }}</td>
+                                                            <td>Aug 22, 2018</td>
+                                                            <td>Yes</td>
+                                                            <td>
+                                                                <a class="rbt-btn btn-gradient btn-sm"
+                                                                    href="#">Download
+                                                                    File</a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+
+                                                    {{--                                                <tr> --}}
+                                                    {{--                                                    <td>Happy Strong</td> --}}
+                                                    {{--                                                    <td>Sep 12, 2018</td> --}}
+                                                    {{--                                                    <td>Never</td> --}}
+                                                    {{--                                                    <td><a class="rbt-btn btn-gradient btn-sm" href="#">Download --}}
+                                                    {{--                                                            File</a></td> --}}
+                                                    {{--                                                </tr> --}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Single Tab Content End -->
+
+                                <!-- Single Tab Content Start -->
+                                <div class="tab-pane fade" id="classes" role="tabpanel">
+                                    <div class="rbt-my-account-inner">
                                         <h3>Classes</h3>
 
                                         <div class="rbt-my-account-table table-responsive text-center">
                                             <table class="table table-bordered">
                                                 <thead class="thead-light">
-                                                <tr>
-                                                    <th>#ID</th>
-                                                    <th>Class Name</th>
-                                                    <th>Class Time</th>
-                                                    <th>Action</th>
-                                                </tr>
+                                                    <tr>
+                                                        {{-- <th>#ID</th> --}}
+                                                        <th>Class Name</th>
+                                                        <th>Class Time</th>
+                                                        <th>Action</th>
+                                                    </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach(auth()->user()->enrollment as $item)
-                                                    @if($item->enrollment_status != "active")
-                                                        @continue
-                                                    @endif
-                                                    <tr>
-                                                        <td>{{ $item->course->title }}</td>
-                                                        <td>Aug 22, 2018</td>
-                                                        <td>Yes</td>
-                                                        <td>
-                                                            <a class="rbt-btn btn-gradient btn-sm" href="#">Download
-                                                                File</a>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
+                                                    @foreach ($classes as $item)
+                                                        {{-- @if ($item->enrollment_status != 'active')
+                                                            @continue
+                                                        @endif --}}
+                                                        <tr>
+                                                            <td>{{ $item->badge->name }}</td>
+                                                            <td>{{ $item->badge->class_time }}</td>
+                                                            {{-- <td>Yes</td> --}}
+                                                            <td>
+                                                                <a class="rbt-btn btn-gradient btn-sm"
+                                                                    href="{{ route("student.class",$item->badge->id) }}">View Class
+                                                                    </a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
 
-                                                {{--                                                <tr>--}}
-                                                {{--                                                    <td>Happy Strong</td>--}}
-                                                {{--                                                    <td>Sep 12, 2018</td>--}}
-                                                {{--                                                    <td>Never</td>--}}
-                                                {{--                                                    <td><a class="rbt-btn btn-gradient btn-sm" href="#">Download--}}
-                                                {{--                                                            File</a></td>--}}
-                                                {{--                                                </tr>--}}
+                                                    {{--                                                <tr> --}}
+                                                    {{--                                                    <td>Happy Strong</td> --}}
+                                                    {{--                                                    <td>Sep 12, 2018</td> --}}
+                                                    {{--                                                    <td>Never</td> --}}
+                                                    {{--                                                    <td><a class="rbt-btn btn-gradient btn-sm" href="#">Download --}}
+                                                    {{--                                                            File</a></td> --}}
+                                                    {{--                                                </tr> --}}
                                                 </tbody>
                                             </table>
                                         </div>
@@ -185,7 +236,8 @@
                                         </address>
 
                                         <div class="rbt-link-hover">
-                                            <a href="#" class="d-inline-block"><i class="fa fa-edit mr--5"></i>Edit
+                                            <a href="#" class="d-inline-block"><i
+                                                    class="fa fa-edit mr--5"></i>Edit
                                                 Address</a>
                                         </div>
                                     </div>
@@ -209,12 +261,13 @@
                                                     </div>
 
                                                     <div class="col-12">
-                                                        <input id="display-name" placeholder="Display Name" type="text">
+                                                        <input id="display-name" placeholder="Display Name"
+                                                            type="text">
                                                     </div>
 
                                                     <div class="col-12">
                                                         <input id="email-address" placeholder="Email Address"
-                                                               type="email">
+                                                            type="email">
                                                     </div>
 
                                                     <div class="col-12">
@@ -223,16 +276,17 @@
 
                                                     <div class="col-12">
                                                         <input id="current-pwd" placeholder="Current Password"
-                                                               type="password">
+                                                            type="password">
                                                     </div>
 
                                                     <div class="col-lg-6 col-12">
-                                                        <input id="new-pwd" placeholder="New Password" type="password">
+                                                        <input id="new-pwd" placeholder="New Password"
+                                                            type="password">
                                                     </div>
 
                                                     <div class="col-lg-6 col-12">
                                                         <input id="confirm-pwd" placeholder="Confirm Password"
-                                                               type="password">
+                                                            type="password">
                                                     </div>
 
                                                     <div class="col-12">

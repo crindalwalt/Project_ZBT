@@ -46,6 +46,8 @@ Route::middleware(['auth', UserCheck::class])->group(function () {
             "staus" => "failed",
         ]);
     })->name("subscription.cancel");
+
+    Route::get("/class/{badge}/view",[HomeController::class,"student_class"])->name("student.class");
 });
 
 //Route::get("/test", function () {

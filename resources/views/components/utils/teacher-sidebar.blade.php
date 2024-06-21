@@ -22,9 +22,9 @@
                         <li><a href="{{ route("teacher.badges") }}"><i
                                     class="feather-book-open"></i><span>Badge</span></a>
                         </li>
-                        <li><a href="{{ route("teacher.students") }}"><i
+                        {{-- <li><a href="{{ route("teacher.students") }}"><i
                                     class="feather-book-open"></i><span>Students</span></a>
-                        </li>
+                        </li> --}}
                         {{-- <li><a href="instructor-wishlist.html"><i
                                         class="feather-bookmark"></i><span>Wishlist</span></a>
                             </li>
