@@ -16,4 +16,9 @@ class TeacherController extends Controller
         $data['students'] = User::where("role", 1)->get();
         return view("pages.teacher.students")->with($data);
     }
+
+    public function badges(){
+        $data["badges"] = auth()->user()->badge_teacher;
+        return view("pages.teacher.teacher_badge_all")->with($data);
+    }
 }

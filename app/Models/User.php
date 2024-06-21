@@ -77,4 +77,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(CourseStudent::class);
     }
+
+    public function badge_teacher(){
+        return $this->hasMany(Badge::class);
+    }
 }

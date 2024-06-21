@@ -19,6 +19,9 @@
                         <li><a href="instructor-profile.html"><i class="feather-user"></i><span>My
                                     Profile</span></a>
                         </li>
+                        <li><a href="{{ route("teacher.badges") }}"><i
+                                    class="feather-book-open"></i><span>Badge</span></a>
+                        </li>
                         <li><a href="{{ route("teacher.students") }}"><i
                                     class="feather-book-open"></i><span>Students</span></a>
                         </li>
