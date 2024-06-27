@@ -21,7 +21,7 @@
                             <!-- End Breadcrumb Area  -->
 
                             <div class=" title-wrapper">
-                                <h1 class="title mb--0">All Courses</h1>
+                                <h1 class="title mb--0">{{ $title}}</h1>
                                 <a href="#" class="rbt-badge-2">
                                     <div class="image">🎉</div> {{$total_courses}} Courses
                                 </a>

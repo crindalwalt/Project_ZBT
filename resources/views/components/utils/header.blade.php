@@ -98,15 +98,9 @@
                                                     </div>
                                                     <ul class="user-list-wrapper">
                                                         <li>
-                                                            <a href="instructor-dashboard.html">
+                                                            <a href="{{ route("account")}}">
                                                                 <i class="feather-home"></i>
                                                                 <span>My Dashboard</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                <i class="feather-bookmark"></i>
-                                                                <span>Bookmark</span>
                                                             </a>
                                                         </li>
                                                         <li>
@@ -116,58 +110,41 @@
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a href="instructor-wishlist.html">
-                                                                <i class="feather-heart"></i>
-                                                                <span>Wishlist</span>
+                                                            <a href="#">
+                                                                <i class="feather-bookmark"></i>
+                                                                <span>Classes</span>
                                                             </a>
                                                         </li>
-                                                        <li>
-                                                            <a href="instructor-reviews.html">
-                                                                <i class="feather-star"></i>
-                                                                <span>Reviews</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="instructor-my-quiz-attempts.html">
-                                                                <i class="feather-list"></i>
-                                                                <span>My Quiz Attempts</span>
-                                                            </a>
-                                                        </li>
+                                                        
+                                                       
+                                                        
                                                         <li>
                                                             <a href="instructor-order-history.html">
                                                                 <i class="feather-clock"></i>
                                                                 <span>Order History</span>
                                                             </a>
                                                         </li>
-                                                        <li>
-                                                            <a href="instructor-quiz-attempts.html">
-                                                                <i class="feather-message-square"></i>
-                                                                <span>Question & Answer</span>
-                                                            </a>
-                                                        </li>
+                                                        
                                                     </ul>
                                                     <hr class="mt--10 mb--10">
-                                                    <ul class="user-list-wrapper">
-                                                        <li>
-                                                            <a href="#">
-                                                                <i class="feather-book-open"></i>
-                                                                <span>Getting Started</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
+                                                    
                                                     <hr class="mt--10 mb--10">
                                                     <ul class="user-list-wrapper">
+                                                        
                                                         <li>
-                                                            <a href="instructor-settings.html">
-                                                                <i class="feather-settings"></i>
-                                                                <span>Settings</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="index.html">
-                                                                <i class="feather-log-out"></i>
-                                                                <span>Logout</span>
-                                                            </a>
+                                                        <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                                    @csrf
+                                    <style>
+                                        .log:hover {
+                                            color: white;
+                                        }
+                                    </style>
+                                    <a class="log bg-danger text-white" :href="route('logout')"
+                                        onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                                        {{ __('Log Out') }}
+                                    </a>
+                                </form>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -342,19 +319,28 @@
                         </nav>
                     </div>
                     <div class="header-right">
-                        @if(auth()->check())
-                            <div class="rbt-btn-wrapper d-none d-xl-block">
-                                <a class="rbt-btn  btn-gradient btn-sm hover-transform-none" href="{{ route("account") }}">
-                                    <span data-text="Join Now">My Account</span>
-                                </a>
-                            </div>
-                        @else
-                            <div class="rbt-btn-wrapper d-none d-xl-block">
-                                <a class="rbt-btn   btn-gradient btn-sm hover-transform-none" href="{{ route("login") }}">
-                                    <span data-text="Join Now">Login / Signup</span>
-                                </a>
-                            </div>
-                        @endif
+                        <style>
+                            .whatsapp-color {
+                                background-color: #25d366;
+                                background-image: linear-gradient(0deg, #25d366 0%, #369154 100%);
+                            }
+                        </style>
+
+                        <div class="rbt-btn-wrapper d-none d-xl-block">
+                            <a class="rbt-btn  whatsapp-color btn-sm hover-transform-none d-flex align-items-center"
+                                href="https://wa.me/+923070825484">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-whatsapp" viewBox="0 0 16 16">
+                                    <path
+                                        d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+                                </svg>
+
+                                <span class="ms-2">Contact Now</span>
+                            </a>
+                        </div>
+
+
                         <!-- Start Mobile-Menu-Bar -->
                         <div class="mobile-menu-bar d-block d-xl-none">
                             <div class="hamberger">
@@ -428,29 +414,19 @@
 
             <div class="mobile-menu-bottom">
 
-                @if(auth()->check())
-                    @if(auth()->user()->role == 0)
-                        <div class="rbt-btn-wrapper mb--20">
-                            <a class="rbt-btn btn-border-gradient radius-round btn-sm hover-transform-none w-100 justify-content-center text-center"
-                                href="{{ route("admin_dashboard") }}">
-                                <span>My Account</span>
-                            </a>
-                        </div>
-                    @endif
-                    <div class="rbt-btn-wrapper mb--20">
-                        <a class="rbt-btn btn-border-gradient radius-round btn-sm hover-transform-none w-100 justify-content-center text-center"
-                            href="{{ route("account") }}">
-                            <span>My Account</span>
-                        </a>
-                    </div>
-                @else
-                    <div class="rbt-btn-wrapper mb--20">
-                        <a class="rbt-btn btn-border-gradient radius-round btn-sm hover-transform-none w-100 justify-content-center text-center"
-                            href="{{ route("login") }}">
-                            <span>Login / Signup</span>
-                        </a>
-                    </div>
-                @endif
+                <div class="rbt-btn-wrapper d-none d-xl-block">
+                    <a class="rbt-btn  whatsapp-color btn-sm hover-transform-none d-flex align-items-center"
+                        href="https://wa.me/+923070825484">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            class="bi bi-whatsapp" viewBox="0 0 16 16">
+                            <path
+                                d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+                        </svg>
+
+                        <span class="ms-2">Contact Now</span>
+                    </a>
+                </div>
                 <div class="social-share-wrapper">
                     <span class="rbt-short-title d-block">Find With Us</span>
                     <ul class="social-icon social-default transparent-with-border justify-content-start mt--20">

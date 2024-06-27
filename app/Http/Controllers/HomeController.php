@@ -85,6 +85,16 @@ class HomeController extends Controller
     }
 
 
+    public function password_change(Request $request){
+        $request->validate([
+            "current_password" => ["required"],
+            "new_password" => ["required"],
+            "confirm_password" => ["required"],
+        ]);
+        // $current_password = $request->current_password;
+        // if(auth()->user()->password == hash_m)
+    }
+
     public function contact()
     {
         return view("pages.user.contact");

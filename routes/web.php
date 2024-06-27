@@ -48,6 +48,9 @@ Route::middleware(['auth', UserCheck::class])->group(function () {
     })->name("subscription.cancel");
 
     Route::get("/class/{badge}/view",[HomeController::class,"student_class"])->name("student.class");
+
+    # Password change 
+    Route::post("/password/change",[HomeController::class,"password_change"])->name("password.change");
 });
 
 //Route::get("/test", function () {

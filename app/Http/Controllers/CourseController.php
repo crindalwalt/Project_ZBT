@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Category;
 use App\Models\Course;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
 
@@ -114,7 +115,7 @@ class CourseController extends Controller
             'discount_price' => $request->discount_price,
             'type' => $courseType,
             'category_id' => $request->category_id,
-            'price_id' =>$request->price_id,
+            'price_id' => $request->price_id,
         ]);
 
 
@@ -134,11 +135,21 @@ class CourseController extends Controller
     }
 
 
-    public function all_courses()
+    public function all_courses(Request $request)
     {
 
 
+
+
         $data['courses'] = Course::all();
+        $data['title'] = "All Courses";
+
+        $catId = $request->query("catId");
+        if ($catId) {
+            $data['courses'] = Course::where("category_id", $catId)->get();
+            $data['title'] = "All Courses in This Category";
+
+        }
         $data['total_courses'] = count($data['courses']);
         return view("pages.user.courses")->with($data);
     }

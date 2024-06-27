@@ -6,6 +6,8 @@ use App\Http\Requests\StoreProductReviewsRequest;
 use App\Http\Requests\UpdateProductReviewsRequest;
 use App\Models\Product;
 use App\Models\ProductReviews;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class ProductReviewsController extends Controller
 {
@@ -36,7 +38,9 @@ class ProductReviewsController extends Controller
             'review' => $request->review,
             "rating" => $request->rating,
         ]);
-        return "ho gya save";
+
+        Alert::success("Thanks for Reviewing","your review will help other in their decisions");
+        return redirect()->back();
     }
 
     /**

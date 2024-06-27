@@ -34,7 +34,7 @@
                                 <a href="#classes" data-bs-toggle="tab">Classes</a>
                                 {{--                                <a href="#payment-method" data-bs-toggle="tab">Payment Method</a> --}}
 
-                                <a href="#address-edit" data-bs-toggle="tab">Address</a>
+                                <!-- <a href="#address-edit" data-bs-toggle="tab">Address</a> -->
                                 <a href="#account-info" data-bs-toggle="tab">Account Details</a>
                                 <form method="POST" action="{{ route('logout') }}" class="d-inline">
                                     @csrf
@@ -78,6 +78,7 @@
                                         <h3>Orders</h3>
 
                                         <div class="rbt-my-account-table table-responsive text-center">
+                                            @if(count($orders) < 1)
                                             <table class="table table-bordered">
                                                 <thead class="thead-light">
                                                     <tr>
@@ -91,7 +92,7 @@
                                                 </thead>
 
                                                 <tbody>
-                                                    @if ($orders)
+                                                    
                                                         @foreach ($orders as $item)
                                                             <tr>
                                                                 <td>{{ $loop->iteration }}</td>
@@ -107,15 +108,16 @@
                                                                 </td>
                                                             </tr>
                                                         @endforeach
-                                                    @else
-                                                        <div>
-                                                            <h6>No Order Found, Browse some of our products <a
-                                                                    href="/shop">here</a></h6>
-                                                        </div>
-                                                    @endif
+                                                    
 
                                                 </tbody>
                                             </table>
+                                            @else
+                                            <div class="alert alert-dark alert-dismissible fade show" role="alert">
+                                                <strong>No Order Found on your account</strong> 
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -250,24 +252,23 @@
                                         <h3>Account Details</h3>
 
                                         <div class="account-details-form">
-                                            <form action="#">
+                                            <form action="{{ route("password.change")}}" method="POST">
+                                                @csrf
                                                 <div class="row g-5">
-                                                    <div class="col-lg-6 col-12">
-                                                        <input id="first-name" placeholder="First Name" type="text">
+                                                    <div class="col-lg-12 col-12">
+                                                        <input id="first-name" placeholder="Full Name" type="text" value="{{ auth()->user()->name}}" readonly>
                                                     </div>
 
-                                                    <div class="col-lg-6 col-12">
-                                                        <input id="last-name" placeholder="Last Name" type="text">
-                                                    </div>
+                                                    
 
                                                     <div class="col-12">
-                                                        <input id="display-name" placeholder="Display Name"
-                                                            type="text">
+                                                        <input id="display-name" placeholder="Email Address"
+                                                            type="email" value="{{ auth()->user()->email }}" readonly>
                                                     </div>
 
                                                     <div class="col-12">
                                                         <input id="email-address" placeholder="Email Address"
-                                                            type="email">
+                                                            type="tel" value="{{ auth()->user()->phone }}" readonly>
                                                     </div>
 
                                                     <div class="col-12">
@@ -276,21 +277,31 @@
 
                                                     <div class="col-12">
                                                         <input id="current-pwd" placeholder="Current Password"
-                                                            type="password">
+                                                            type="password" name="current_password">
+                                                            @error("current_password")
+                                                                {{ $message}}
+                                                            @enderror
                                                     </div>
 
                                                     <div class="col-lg-6 col-12">
                                                         <input id="new-pwd" placeholder="New Password"
-                                                            type="password">
+                                                            type="password" name="new_password">
+                                                            @error("new_password")
+                                                            {{ $message}}
+
+                                                            @enderror
                                                     </div>
 
                                                     <div class="col-lg-6 col-12">
                                                         <input id="confirm-pwd" placeholder="Confirm Password"
-                                                            type="password">
+                                                            type="password" name="confirm_password">
+                                                            @error("confirm_password")
+                                                            {{ $message}}
+                                                            @enderror
                                                     </div>
 
                                                     <div class="col-12">
-                                                        <button class="rbt-btn btn-gradient icon-hover">
+                                                        <button class="rbt-btn btn-gradient icon-hover" type="submit">
                                                             <span class="btn-text">Save Changes</span>
                                                             <span class="btn-icon"><i
                                                                     class="feather-arrow-right"></i></span>

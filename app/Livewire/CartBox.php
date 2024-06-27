@@ -45,8 +45,8 @@ class CartBox extends Component
             ]);
         }
 
-        return '<div class="container my-2 alert alert-warning alert-dismissible fade show" role="alert">
-                  <strong>Hello User!</strong> Register yourself as a user to enjoy the seemless experience.
+        return '<div class="container my-2 alert alert-info alert-dismissible fade show" role="alert">
+                  <strong>Hello User!</strong> Register yourself as a user to enjoy the seemless experience. <a href="{{route("login")}}">Login Here</a>
                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>';
     }

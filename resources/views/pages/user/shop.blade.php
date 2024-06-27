@@ -77,16 +77,7 @@
                             </div>
                             <div class="content">
 
-                                <div class="rbt-review justify-content-center">
-                                    <div class="rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <span class="rating-count">(15) - 100% Positive Reviews</span>
-                                </div>
+                           
                                 <div class="rbt-price justify-content-center mt--10">
                                     <span class="current-price theme-gradient">${{$item->discount_price}}</span>
                                     <span class="off-price">${{ $item->regular_price }}</span>

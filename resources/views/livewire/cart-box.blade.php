@@ -2,34 +2,33 @@
     <!-- Start Cart Dropdown -->
     <div class="rbt-cart-side-menu">
         <div class="inner-wrapper">
-            @if(isset($cart))
-                <div class="inner-top">
-                    <div class="content">
-                        <div class="title">
-                            <h4 class="title mb--0">Your shopping cart</h4>
-                        </div>
-                        <div class="rbt-btn-close" id="btn_sideNavClose">
-                            <button class="minicart-close-button rbt-round-btn"><i class="feather-x"></i></button>
-                        </div>
+            <div class="inner-top">
+                <div class="content">
+                    <div class="title">
+                        <h4 class="title mb--0">Your shopping cart</h4>
+                    </div>
+                    <div class="rbt-btn-close" id="btn_sideNavClose">
+                        <button class="minicart-close-button rbt-round-btn"><i class="feather-x"></i></button>
                     </div>
                 </div>
+            </div>
+            @if(isset($cart))
                 <nav class="side-nav w-100">
                     <ul class="rbt-minicart-wrapper">
 
 
                         @if($cart)
-                            @foreach($cart->items as $item )
+                            @foreach($cart->items as $item)
                                 <li class="minicart-item">
                                     <div class="thumbnail">
                                         <a href="#">
-                                            <img src="{{ asset($item->product->media[0]->image) }}"
-                                                 alt="Product Images">
+                                            <img src="{{ asset($item->product->media[0]->image) }}" alt="Product Images">
                                         </a>
                                     </div>
 
                                     <div class="product-content">
                                         <h6 class="title"><a
-                                                href="{{ route("product.detail",$item->product->slug) }}">{{ $item->product->title }}</a>
+                                                href="{{ route("product.detail", $item->product->slug) }}">{{ $item->product->title }}</a>
                                         </h6>
 
                                         <span class="quantity">{{$item->quantity}} * <span
@@ -69,7 +68,10 @@
                     </div>
                 </div>
             @else
-                <div>Nothing Found</div>
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <strong>Cart is Empty! </strong> <a href="{{ route("products")}}">click here</a> to browse some valuable items
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
             @endif
         </div>
     </div>
