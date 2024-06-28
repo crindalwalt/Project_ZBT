@@ -78,21 +78,21 @@
                                         <h3>Orders</h3>
 
                                         <div class="rbt-my-account-table table-responsive text-center">
-                                            @if(count($orders) < 1)
-                                            <table class="table table-bordered">
-                                                <thead class="thead-light">
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>Name</th>
-                                                        <th>Date</th>
-                                                        <th>Status</th>
-                                                        <th>Total</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
+                                            @if (count($orders) < 1)
+                                                <table class="table table-bordered">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th>No</th>
+                                                            <th>Name</th>
+                                                            <th>Date</th>
+                                                            <th>Status</th>
+                                                            <th>Total</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
 
-                                                <tbody>
-                                                    
+                                                    <tbody>
+
                                                         @foreach ($orders as $item)
                                                             <tr>
                                                                 <td>{{ $loop->iteration }}</td>
@@ -108,15 +108,17 @@
                                                                 </td>
                                                             </tr>
                                                         @endforeach
-                                                    
 
-                                                </tbody>
-                                            </table>
+
+                                                    </tbody>
+                                                </table>
                                             @else
-                                            <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                                                <strong>No Order Found on your account</strong> 
-                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                            </div>
+                                                <div class="alert alert-dark alert-dismissible fade show"
+                                                    role="alert">
+                                                    <strong>No Order Found on your account</strong>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                        aria-label="Close"></button>
+                                                </div>
                                             @endif
                                         </div>
                                     </div>
@@ -135,7 +137,7 @@
                                                         <th>#ID</th>
                                                         <th>Class Name</th>
                                                         <th>Class Time</th>
-                                                        <th>Action</th>
+                                                        <th>Status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -148,9 +150,17 @@
                                                             <td>Aug 22, 2018</td>
                                                             <td>Yes</td>
                                                             <td>
-                                                                <a class="rbt-btn btn-gradient btn-sm"
-                                                                    href="#">Download
-                                                                    File</a>
+                                                                @if ($item->enrollment_status == 'active')
+                                                                    <span class="badge bg-success rounded-5 ">
+                                                                        Active
+                                                                    </span>
+                                                                @else
+                                                                    <span class="badge bg-danger rounded-5 ">
+                                                                        Pending
+                                                                    </span>
+                                                                @endif
+
+
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -195,8 +205,9 @@
                                                             {{-- <td>Yes</td> --}}
                                                             <td>
                                                                 <a class="rbt-btn btn-gradient btn-sm"
-                                                                    href="{{ route("student.class",$item->badge->id) }}">View Class
-                                                                    </a>
+                                                                    href="{{ route('student.class', $item->badge->id) }}">View
+                                                                    Class
+                                                                </a>
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -252,23 +263,26 @@
                                         <h3>Account Details</h3>
 
                                         <div class="account-details-form">
-                                            <form action="{{ route("password.change")}}" method="POST">
+                                            <form action="{{ route('password.change') }}" method="POST">
                                                 @csrf
                                                 <div class="row g-5">
                                                     <div class="col-lg-12 col-12">
-                                                        <input id="first-name" placeholder="Full Name" type="text" value="{{ auth()->user()->name}}" readonly>
+                                                        <input id="first-name" placeholder="Full Name" type="text"
+                                                            value="{{ auth()->user()->name }}" readonly>
                                                     </div>
 
-                                                    
+
 
                                                     <div class="col-12">
                                                         <input id="display-name" placeholder="Email Address"
-                                                            type="email" value="{{ auth()->user()->email }}" readonly>
+                                                            type="email" value="{{ auth()->user()->email }}"
+                                                            readonly>
                                                     </div>
 
                                                     <div class="col-12">
                                                         <input id="email-address" placeholder="Email Address"
-                                                            type="tel" value="{{ auth()->user()->phone }}" readonly>
+                                                            type="tel" value="{{ auth()->user()->phone }}"
+                                                            readonly>
                                                     </div>
 
                                                     <div class="col-12">
@@ -278,30 +292,30 @@
                                                     <div class="col-12">
                                                         <input id="current-pwd" placeholder="Current Password"
                                                             type="password" name="current_password">
-                                                            @error("current_password")
-                                                                {{ $message}}
-                                                            @enderror
+                                                        @error('current_password')
+                                                            {{ $message }}
+                                                        @enderror
                                                     </div>
 
                                                     <div class="col-lg-6 col-12">
                                                         <input id="new-pwd" placeholder="New Password"
                                                             type="password" name="new_password">
-                                                            @error("new_password")
-                                                            {{ $message}}
-
-                                                            @enderror
+                                                        @error('new_password')
+                                                            {{ $message }}
+                                                        @enderror
                                                     </div>
 
                                                     <div class="col-lg-6 col-12">
                                                         <input id="confirm-pwd" placeholder="Confirm Password"
                                                             type="password" name="confirm_password">
-                                                            @error("confirm_password")
-                                                            {{ $message}}
-                                                            @enderror
+                                                        @error('confirm_password')
+                                                            {{ $message }}
+                                                        @enderror
                                                     </div>
 
                                                     <div class="col-12">
-                                                        <button class="rbt-btn btn-gradient icon-hover" type="submit">
+                                                        <button class="rbt-btn btn-gradient icon-hover"
+                                                            type="submit">
                                                             <span class="btn-text">Save Changes</span>
                                                             <span class="btn-icon"><i
                                                                     class="feather-arrow-right"></i></span>

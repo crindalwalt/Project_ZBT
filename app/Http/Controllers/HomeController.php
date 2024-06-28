@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Badge;
 use App\Models\Cart;
-use App\Models\Category;
-use App\Models\Course;
-use App\Models\Order;
-use App\Models\Product;
 use App\Models\User;
+use App\Models\Badge;
+use App\Models\Order;
+use App\Models\Course;
+use App\Models\Product;
+use App\Models\Category;
 //use Barryvdh\DomPDF\PDF;
-use Barryvdh\DomPDF\Facade\Pdf;
-
 use Illuminate\Http\Request;
+
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -85,13 +87,30 @@ class HomeController extends Controller
     }
 
 
-    public function password_change(Request $request){
+    public function password_change(Request $request)
+    {
+        // dd($request->all()); 
         $request->validate([
             "current_password" => ["required"],
-            "new_password" => ["required"],
-            "confirm_password" => ["required"],
+            "new_password" => ["required", 'digits:6'],
+            "confirm_password" => ["required", 'digits:6'],
         ]);
-        // $current_password = $request->current_password;
+
+        // return "validated";
+        $current_password = Hash::make($request->current_password);
+        if ($request->new_password !== $request->confirm_password) {
+            Alert::warning("Password does not match", "try again with matching password and confirm password");
+            return redirect()->back();
+        }
+        $newPassword = Hash::make($request->new_password);
+        Auth::user()->update([
+            'password' => $newPassword,
+        ]);
+        Auth::logout();
+        Alert::warning("Password changed Successfully", "Login with the New password");
+        return redirect()->back();
+
+
         // if(auth()->user()->password == hash_m)
     }
 

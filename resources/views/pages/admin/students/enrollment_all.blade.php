@@ -81,7 +81,7 @@
                                                     <th>Expiry</th>
                                                     <th>Payment</th>
                                                     <th>Payment status</th>
-                                                    <th>Enrolled status</th> 
+                                                    <th>Enrolled status</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -91,7 +91,7 @@
                                                     @foreach ($enrollments as $item)
                                                         <tr>
                                                             <th>#00{{ $item->id }}</th>
-                                                            <td>{{ $item->user->name }}</td>
+                                                            <td>{{ $item->enrolled_students->name }}</td>
                                                             <td>{{ $item->course->title }}</td>
                                                             <td>
                                                                 {{ Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i:s') }}

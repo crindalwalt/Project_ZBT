@@ -211,7 +211,7 @@
                                     to login</a>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
-                                                                            <label for="name">Reviewing as @ <b> {{ auth()->user()->name }}</b></label>
+                                                                            
 
 
                         @else
@@ -222,7 +222,7 @@
                                 <p class="comment-note mb--20">Your Valueable Feedback might help someone with their
                                     decision</p>
                                 <h6 class="mb--0 fontWeight600 title">Your Rating</h6>
- 
+
 
                                 <div class="notification-text d-flex align-items-center mb--30">
                                     <style>
@@ -276,7 +276,7 @@
                                 </div>
 
                                 <div class="row row--10">
-                                    
+
 
                                     <div class="col-12 my-2">
                                         <div class="form-group">
@@ -288,7 +288,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                   
+
                                     <div class="col-lg-12">
                                         <button class="rbt-btn btn-gradient hover-icon-reverse">
                                             <span class="icon-reverse-wrapper">
@@ -347,7 +347,7 @@
                                 </div>
                                 <div class="content">
 
-                                   
+
                                     <div class="rbt-price justify-content-center mt--10">
                                         <span class="current-price theme-gradient">${{ $item->discount_price }}</span>
                                         <span class="off-price">${{ $item->regular_price }}</span>

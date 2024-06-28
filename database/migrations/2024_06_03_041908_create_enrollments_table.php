@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string("course_id");
             $table->dateTime("expire_date");
             $table->enum("payment_status",["success","pending","declined"]);
-            $table->string("enrollment_status",["active","expelled"]);
+            $table->enum("enrollment_status",["active","pending","expelled"])->default("pending");
             $table->timestamps();
         });
     }
