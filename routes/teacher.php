@@ -20,6 +20,7 @@ Route::middleware(["auth", TeacherCheck::class])->prefix("/teacher")->group(func
     Route::get("/students", [TeacherController::class, 'students'])->name("teacher.students");
     Route::get("/badges", [TeacherController::class, "badges"])->name("teacher.badges");
     Route::get("/badge/{badge}/view",[TeacherController::class,"view"])->name("teacher.badge.view");
+    Route::get("/profile", [TeacherController::class,"profile"])->name("teacher.profile");
 
 
     # MEETING CRUD

@@ -24,7 +24,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="row g-5">
+                    <div class="row g-5">Logo
+                        Favicon
                         <!-- My Account Tab Menu Start -->
                         <div class="col-lg-3 col-12">
                             <div class="rbt-my-account-tab-button nav" role="tablist">
@@ -78,8 +79,8 @@
                                         <h3>Orders</h3>
 
                                         <div class="rbt-my-account-table table-responsive text-center">
-                                            @if (count($orders) < 1)
-                                                <table class="table table-bordered">
+
+                                                        <table class="table table-bordered">
                                                     <thead class="thead-light">
                                                         <tr>
                                                             <th>No</th>
@@ -112,14 +113,7 @@
 
                                                     </tbody>
                                                 </table>
-                                            @else
-                                                <div class="alert alert-dark alert-dismissible fade show"
-                                                    role="alert">
-                                                    <strong>No Order Found on your account</strong>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                            @endif
+
                                         </div>
                                     </div>
                                 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Badge;
+use App\Models\BadgeStudents;
 use App\Models\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -11,7 +12,20 @@ class TeacherController extends Controller
 {
     public function index()
     {
-        return view("pages.teacher.dashboard");
+        $user = auth()->user();
+        $assignedBatches = Badge::where("teacher_id", "$user->id")->get();
+        $studentCount = 0;
+        foreach ($assignedBatches as $batch) {
+            // dd($batch->badgeStudents);
+            $studentCount += count($batch->badgeStudents);
+        }
+
+        $data['course_count'] = count($assignedBatches);
+        $data['student_count'] = $studentCount;
+        $data['batches'] = $assignedBatches;
+
+        // dd($data);
+        return view("pages.teacher.dashboard")->with($data);
     }
     public function students()
     {
@@ -35,9 +49,9 @@ class TeacherController extends Controller
 
     public function store(Request $request, Badge $badge)
     {
-        // dd($request->all());
+
         $request->validate([
-            'meeting_link' => ["required",'string']
+            'meeting_link' => ["required", 'string']
         ]);
         $badge->meetings()->create([
             'link' => $request->meeting_link,
@@ -46,5 +60,13 @@ class TeacherController extends Controller
         // TODO: generate notification here
         Alert::success("Meeting Created", "Students are notified and soon they\'ll be in the meeting ");
         return redirect()->back();
+    }
+
+    public function profile()
+    {
+        $user = auth()->user();
+        $data['teacher'] = $user;
+        $data['batches'] = Badge::where("teacher_id", "$user->id")->get();
+        return view("pages.teacher.teacher_profile")->with($data);
     }
 }

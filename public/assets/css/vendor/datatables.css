@@ -16,9 +16,14 @@
 td{
     padding: 2rem 1rem !important;
 }
+tr{
+    /* border: 1px solid black; */
+    border-radius: .5rem !important;
+    margin: .5rem 0rem !important;
+}
 tr:hover{
     background-color: #efefef !important;
-    cursor: wait;
+    /* cursor: ; */
 }
 table.dataTable td.dt-control {
     text-align: center;

@@ -175,9 +175,8 @@
                                                         </div>
                                                         <div class="admin-info">
                                                             <span class="name">{{ auth()->user()->name }}</span>
-                                                            <a class="rbt-btn-link color-primary"
-                                                                href="profile.html">View
-                                                                Profile</a>
+
+                                                            
                                                         </div>
                                                     </div>
                                                     <ul class="user-list-wrapper">
