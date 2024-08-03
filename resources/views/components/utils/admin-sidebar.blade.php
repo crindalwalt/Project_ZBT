@@ -24,7 +24,7 @@
                             <li>
                                 <a href="{{ route('all_students') }}">
                                     <i class="feather-star"></i>
-                                    <span>Students</span>
+                                    <span>Visitors</span>
                                 </a>
                             </li>
                             <li><a href="{{ route('enrollment.show_all') }}"><i

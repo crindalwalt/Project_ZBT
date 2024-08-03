@@ -165,7 +165,7 @@ class HomeController extends Controller
 
     public function all_students()
     {
-        $data['students'] = User::Where("role", 1)->get();
+        $data['students'] = User::Where("role", 1)->orderBy('created_at', 'asc')->get();
         return view("pages.admin.students.students_all")->with($data);
     }
 

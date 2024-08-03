@@ -21,7 +21,7 @@ class EnrollmentFactory extends Factory
             "course_id" => $this->faker->numberBetween(1,6),
             "expire_date" => $this->faker->date(),
             "payment_status" => "success",
-            "enrollment_status" => "active"
+            "enrollment_status" => "pending"
         ];
     }
 }

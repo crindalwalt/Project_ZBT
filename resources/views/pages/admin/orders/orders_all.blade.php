@@ -143,7 +143,7 @@
                                                         </thead>
 
                                                         <tbody>
-                                                        @if($pending_orders)
+                                                        @if($pending_orders->isNotEmpty())
                                                             @foreach($pending_orders as $item)
                                                                 <tr>
                                                                     <th>#00{{$item->id}}</th>
@@ -324,7 +324,7 @@
                                                         </thead>
 
                                                         <tbody>
-                                                        @if($orders)
+                                                        @if($completed_orders->isNotEmpty())
                                                             @foreach($completed_orders as $item)
                                                             <tr>
                                                                 <th>#00{{$item->id}}</th>
@@ -504,7 +504,7 @@
                                                         </thead>
 
                                                         <tbody>
-                                                        @if($orders)
+                                                        @if($orders->isNotEmpty())
                                                             @foreach($orders as $item)
                                                             <tr>
                                                                 <th>#00{{$item->id}}</th>

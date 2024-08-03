@@ -11,44 +11,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <!-- Start Dashboard Top  -->
-                    <div class="rbt-dashboard-content-wrapper">
-                        <div class="tutor-bg-photo bg_image bg_image--22 height-350"></div>
-                        <!-- Start Tutor Information  -->
-                        <div class="rbt-tutor-information">
-                            <div class="rbt-tutor-information-left">
-                                <div class="thumbnail rbt-avatars size-lg">
-                                    <img src="assets/images/team/avatar.jpg" alt="Instructor">
-                                </div>
-                                <div class="tutor-content">
-                                    <h5 class="title">John Due</h5>
-                                    <div class="rbt-review">
-                                        <div class="rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <span class="rating-count"> (15 Reviews)</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="rbt-tutor-information-right">
-                                <div class="tutor-btn">
-                                    <a class="rbt-btn btn-md hover-icon-reverse" href="create-course.html">
-                                        <span class="icon-reverse-wrapper">
-                                            <span class="btn-text">Create a New Course</span>
-                                            <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                            <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Tutor Information  -->
-                    </div>
-                    <!-- End Dashboard Top  -->
+
 
                     <div class="row g-5">
                         <div class="col-lg-3">
@@ -77,38 +40,64 @@
                                                     <th>Order ID</th>
                                                     <th>Student</th>
                                                     <th>Course</th>
-                                                    <th>Joined</th>
-                                                    <th>Expiry</th>
+                                                    <th>Enrolled status</th>
+                                                    {{-- <th>Joined</th> --}}
+                                                    {{-- <th>Expiry</th> --}}
                                                     <th>Payment</th>
                                                     <th>Payment status</th>
-                                                    <th>Enrolled status</th>
+
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
 
                                             <tbody>
-                                                @if ($enrollments)
+                                                @if ($enrollments->isNotEmpty())
                                                     @foreach ($enrollments as $item)
                                                         <tr>
                                                             <th>#00{{ $item->id }}</th>
                                                             <td>{{ $item->enrolled_students->name }}</td>
                                                             <td>{{ $item->course->title }}</td>
                                                             <td>
+                                                                <span
+                                                                    class="rbt-badge-5
+                                                                    @if($item->enrollment_status == "active")
+                                                                    bg-color-success-opacity color-success
+                                                                    @elseif ($item->enrollment_status == "pending")
+                                                                    bg-color-danger-opacity color-danger
+                                                                    @elseif ($item->enrollment_status == "expelled")
+                                                                    bg-color-dark-opacity color-dark
+                                                                    @endif
+
+
+                                                                    ">{{ $item->enrollment_status }}</span>
+                                                            </td>
+                                                            {{-- <td>
                                                                 {{ Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i:s') }}
-                                                            </td>
-                                                            <td>
+                                                            </td> --}}
+                                                            {{-- <td>
                                                                 {{ Carbon\Carbon::parse($item->expire_date)->format('Y-m-d H:i:s') }}
-                                                            </td>
+                                                            </td> --}}
                                                              <td>${{ $item->course->discount_price }}</td>
-                                                        <td><span
-                                                                class="rbt-badge-5 bg-color-success-opacity color-success">{{ $item->payment_status }}</span>
+                                                        <td>
+                                                            <span
+                                                                class="rbt-badge-5
+                                                                @if($item->payment_status == "success")
+                                                                bg-color-success-opacity color-success
+                                                                @elseif ($item->payment_status == "pending")
+                                                                bg-color-danger-opacity color-danger
+                                                                @elseif ($item->payment_status == "declined")
+                                                                bg-color-dark-opacity color-dark
+                                                                @endif
+
+                                                                "
+                                                                >
+                                                                {{ $item->payment_status }}
+                                                            </span>
                                                         </td>
-                                                        <td><span
-                                                                class="rbt-badge-5 bg-color-success-opacity color-success">{{ $item->enrollment_status }}</span>
-                                                        </td>
+
                                                             <td>
                                                                 <a href="{{ route('students.transform', $item->id) }}"
-                                                                    class="me-2 btn btn-sm btn-primary">View Student</a>
+                                                                    class="me-2 btn btn-sm btn-primary rounded-pill px-2 ">View Student</a>
 
                                                             </td>
                                                         </tr>
