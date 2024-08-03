@@ -10,14 +10,14 @@
                     </div>
                     <nav class="mainmenu-nav">
                         <ul class="dashboard-mainmenu rbt-default-sidebar-list">
-                            <li><a href="instructor-dashboard.html"><i class="feather-home"></i><span>Dashboard</span></a>
+                            <li><a href="{{ route("admin_dashboard") }}"><i class="feather-home"></i><span>Dashboard</span></a>
                             </li>
                             <li><a href="{{ route('admin.products.all') }}"><i
                                         class="feather-shopping-bag"></i><span>Products</span></a>
                             </li>
                             <li>
                                 <a href="{{ route('order.index') }}">
-                                    <i class="feather-shopping-bag"></i>
+                                    <i class="feather-truck"></i>
                                     <span>Orders</span>
                                 </a>
                             </li>

@@ -38,6 +38,9 @@ Route::middleware([AdminCheck::class,"auth","verified"])->prefix("/admin")->grou
     # ORDER CRUD
     Route::get("/orders", [OrderController::class, 'index'])->name("order.index");
     Route::get("/order/{order}/detail", [OrderController::class, 'show'])->name("order.detail");
+    Route::get("/order/{order}/dispatch",[OrderController::class,"dispatch"])->name("admin.order.dispatch");
+    Route::get("/order/{order}/cancel",[OrderController::class,"cancel"])->name("admin.order.cancel");
+
 
 
     # STUDENTS

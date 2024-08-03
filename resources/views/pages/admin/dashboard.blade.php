@@ -10,44 +10,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <!-- Start Dashboard Top  -->
-                    <div class="rbt-dashboard-content-wrapper">
-                        <div class="tutor-bg-photo bg_image bg_image--22 height-350"></div>
-                        <!-- Start Tutor Information  -->
-                        <div class="rbt-tutor-information">
-                            <div class="rbt-tutor-information-left">
-                                <div class="thumbnail rbt-avatars size-lg">
-                                    <img src="assets/images/team/avatar.jpg" alt="Instructor">
-                                </div>
-                                <div class="tutor-content">
-                                    <h5 class="title">John Due</h5>
-                                    <div class="rbt-review">
-                                        <div class="rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <span class="rating-count"> (15 Reviews)</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="rbt-tutor-information-right">
-                                <div class="tutor-btn">
-                                    <a class="rbt-btn btn-md hover-icon-reverse" href="create-course.html">
-                                        <span class="icon-reverse-wrapper">
-                        <span class="btn-text">Create a New Course</span>
-                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Tutor Information  -->
-                    </div>
-                    <!-- End Dashboard Top  -->
+
 
                     <div class="row g-5">
                         <div class="col-lg-3">
@@ -72,9 +35,10 @@
                                                     </div>
                                                     <div class="content">
                                                         <h3 class="counter without-icon color-primary"><span
-                                                                class="odometer" data-count="30">00</span>
+                                                                class="odometer"
+                                                                data-count="{{ count($courses) }}">00</span>
                                                         </h3>
-                                                        <span class="rbt-title-style-2 d-block">Enrolled Courses</span>
+                                                        <span class="rbt-title-style-2 d-block">Total Courses</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -91,7 +55,8 @@
                                                     </div>
                                                     <div class="content">
                                                         <h3 class="counter without-icon color-secondary"><span
-                                                                class="odometer" data-count="10">00</span>
+                                                                class="odometer"
+                                                                data-count="{{ count($courses) }}">00</span>
                                                         </h3>
                                                         <span class="rbt-title-style-2 d-block">ACTIVE COURSES</span>
                                                     </div>
@@ -111,9 +76,10 @@
                                                     </div>
                                                     <div class="content">
                                                         <h3 class="counter without-icon color-violet"><span
-                                                                class="odometer" data-count="7">00</span>
+                                                                class="odometer"
+                                                                data-count="{{ count($students) }}">00</span>
                                                         </h3>
-                                                        <span class="rbt-title-style-2 d-block">Completed Courses</span>
+                                                        <span class="rbt-title-style-2 d-block">Total Students</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -130,9 +96,10 @@
                                                     </div>
                                                     <div class="content">
                                                         <h3 class="counter without-icon color-pink"><span
-                                                                class="odometer" data-count="160">00</span>
+                                                                class="odometer"
+                                                                data-count="{{ count($products) }}">00</span>
                                                         </h3>
-                                                        <span class="rbt-title-style-2 d-block">Total Students</span>
+                                                        <span class="rbt-title-style-2 d-block">Total Products</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -149,33 +116,17 @@
                                                     </div>
                                                     <div class="content">
                                                         <h3 class="counter without-icon color-coral"><span
-                                                                class="odometer" data-count="20">00</span>
+                                                                class="odometer"
+                                                                data-count="{{ count($orders) }}">00</span>
                                                         </h3>
-                                                        <span class="rbt-title-style-2 d-block">Total Courses</span>
+                                                        <span class="rbt-title-style-2 d-block">Total Orders</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- End Single Card  -->
 
-                                        <!-- Start Single Card  -->
-                                        <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                                            <div
-                                                class="rbt-counterup variation-01 rbt-hover-03 rbt-border-dashed bg-warning-opacity">
-                                                <div class="inner">
-                                                    <div class="rbt-round-icon bg-warning-opacity">
-                                                        <i class="feather-dollar-sign"></i>
-                                                    </div>
-                                                    <div class="content">
-                                                        <h3 class="counter color-warning"><span class="odometer"
-                                                                                                data-count="25000">00</span>
-                                                        </h3>
-                                                        <span class="rbt-title-style-2 d-block">Total Earnings</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Single Card  -->
+
 
                                     </div>
                                 </div>
@@ -194,71 +145,78 @@
                                             <div class="rbt-dashboard-table table-responsive">
                                                 <table class="rbt-table table table-borderless">
                                                     <thead>
-                                                    <tr>
-                                                        <th>Course Name</th>
-                                                        <th>Enrolled</th>
-                                                        <th>Rating</th>
-                                                    </tr>
+                                                        <tr>
+                                                            <th>Course Name</th>
+                                                            <th>Batches</th>
+                                                            {{-- <th>Rating</th> --}}
+                                                        </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr>
-                                                        <th><a href="#">Accounting</a></th>
-                                                        <td>50</td>
-                                                        <td>
-                                                            <div class="rating">
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th><a href="#">Marketing</a></th>
-                                                        <td>40</td>
-                                                        <td>
-                                                            <div class="rating">
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th><a href="#">Web Design</a></th>
-                                                        <td>75</td>
-                                                        <td>
-                                                            <div class="rating">
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th><a href="#">Graphic</a></th>
-                                                        <td>20</td>
-                                                        <td>
-                                                            <div class="rating">
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="off fas fa-star"></i>
-                                                                <i class="off fas fa-star"></i>
-                                                                <i class="off fas fa-star"></i>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                                        @if ($courses->isNotEmpty())
+                                                            @foreach ($courses as $item)
+                                                                <tr>
+                                                                    <th><a href="#">{{ $item->title }}</a></th>
+                                                                    <td>{{ count($item->batches) }}</td>
+
+                                                                </tr>
+                                                            @endforeach
+                                                        @endif
+
+
                                                     </tbody>
                                                 </table>
                                             </div>
 
                                             <div class="load-more-btn text-center">
-                                                <a class="rbt-btn-link" href="#">Browse All Course<i
+                                                <a class="rbt-btn-link" href="{{ route("admin.courses") }}">Browse All Course<i
+                                                        class="feather-arrow-right"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box mb--60">
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="section-title">
+                                                <h4 class="rbt-title-style-3">My Products</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row gy-5">
+                                        <div class="col-lg-12">
+                                            <div class="rbt-dashboard-table table-responsive">
+                                                <table class="rbt-table table table-borderless">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Product Name</th>
+                                                            <th>orders</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @if ($products->isNotEmpty())
+                                                            @foreach ($products as $item)
+                                                                <tr>
+                                                                    <th><a href="#">{{ $item->title }}</a></th>
+                                                                    <td>{{ count($item->orders) }}</td>
+                                                                    <td>
+                                                                        <a href="#" class="btn btn-md btn-primary rounded-pill">View order</a>
+                                                                    </td>
+
+                                                                </tr>
+                                                            @endforeach
+                                                        @endif
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <div class="load-more-btn text-center">
+                                                <a class="rbt-btn-link" href="{{ route("admin.products.all") }}">Browse All Products<i
                                                         class="feather-arrow-right"></i></a>
                                             </div>
                                         </div>

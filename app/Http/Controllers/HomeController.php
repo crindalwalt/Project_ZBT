@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\Course;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Enrollment;
 //use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,14 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view("pages.admin.dashboard");
+        $data['courses'] = Course::all();
+        $data['products'] = Product::all();
+        $data['orders'] = Order::all();
+        $data['students'] = Enrollment::all();
+
+
+
+        return view("pages.admin.dashboard")->with($data);
     }
 
 
@@ -89,7 +97,7 @@ class HomeController extends Controller
 
     public function password_change(Request $request)
     {
-        // dd($request->all()); 
+        // dd($request->all());
         $request->validate([
             "current_password" => ["required"],
             "new_password" => ["required", 'digits:6'],

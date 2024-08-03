@@ -20,7 +20,9 @@ class Course extends Model
             ]
         ];
     }
-
+    public function batches(){
+        return $this->hasMany(Badge::class);
+    }
     public function category()
     {
         return $this->belongsTo(Category::class);

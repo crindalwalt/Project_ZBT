@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Order;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class OrderController extends Controller
 {
@@ -14,9 +15,24 @@ class OrderController extends Controller
     public function index()
     {
         $data['orders'] = Order::all();
-        return view("pages.admin.orders_all")->with($data);
+        $data['pending_orders'] = Order::where("delivery_status","pending")->get();
+        $data['completed_orders'] = Order::where('delivery_status','approved')->get();
+        return view("pages.admin.orders.orders_all")->with($data);
     }
-
+    public function dispatch(Order $order){
+        $order->update([
+            "delivery_status" =>  "dispatched",
+        ]);
+        Alert::success("Order has been Dispatched ","User will view order tracking on his dashboard");
+        return redirect()->back();
+    }
+    public function cancel(Order $order){
+        $order->update([
+            "delivery_status" =>  "cancelled",
+        ]);
+        Alert::success("Order has been Cancelled ","Remember to refund the customer from Stripe also");
+        return redirect()->back();
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -39,7 +55,7 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         $data['order'] = $order;
-        return view("pages.user.ecommerce.order_detail")->with($data);
+        return view("pages.admin.orders.order_detail")->with($data);
 
     }
 
