@@ -134,7 +134,7 @@
                                                         <tr>
                                                             <th>Order ID</th>
                                                             <th>Customer</th>
-                                                            <th>Date</th>
+                                                            {{-- <th>Date</th> --}}
                                                             <th>Price</th>
                                                             <th>Payment</th>
                                                             <th>Delivery</th>
@@ -148,17 +148,37 @@
                                                                 <tr>
                                                                     <th>#00{{$item->id}}</th>
                                                                     <td>{{$item->user->name}}</td>
-                                                                    <td>{{ Carbon\Carbon::parse($item->created_at)->format("Y-m-d H:i:s") }}</td>
+                                                                    {{-- <td>{{ Carbon\Carbon::parse($item->created_at)->format("Y-m-d H:i:s") }}</td> --}}
                                                                     <td>${{ $item->total_value }}</td>
                                                                     <td><span
-                                                                            class="rbt-badge-5 bg-color-success-opacity color-success">{{ $item->payment_status }}</span>
+                                                                            class="rbt-badge-5
+                                                                            @if($item->payment_status == "approved") bg-color-success-opacity color-success
+                                                                            @elseif($item->payment_status == "cancelled")
+                                                                            bg-color-danger-opacity color-danger
+                                                                            @elseif($item->payment_status == "pending")
+                                                                            bg-color-warning-opacity color-warning
+                                                                            @endif
+                                                                            ">{{ $item->payment_status }}</span>
                                                                     </td>
                                                                     <td><span
-                                                                            class="rbt-badge-5 bg-color-success-opacity color-success">{{ $item->delivery_status }}</span>
+                                                                            class="rbt-badge-5
+
+
+                                                                            @if($item->delivery_status == "approved") bg-color-success-opacity color-success
+                                                                            @elseif($item->delivery_status == "cancelled")
+                                                                            bg-color-danger-opacity color-danger
+                                                                            @elseif($item->delivery_status == "pending")
+                                                                            bg-color-warning-opacity color-warning
+                                                                            @elseif($item->delivery_status == "dispatched")
+                                                                            bg-color-primary-opacity color-primary
+                                                                            @elseif($item->delivery_status == "delivered")
+                                                                            bg-color-dark-opacity color-dark
+                                                                            @endif
+
+                                                                            ">{{ $item->delivery_status }}</span>
                                                                     </td>
                                                                     <td>
-                                                                        <a href="{{ route("order.detail",$item->id) }}" class="me-2 btn btn-sm btn-primary">Show</a>
-                                                                        <button class="me-2 btn btn-sm btn-primary">Delete</button>
+                                                                        <a href="{{ route("order.detail",$item->id) }}" class="me-2 btn btn-md rounded-pill btn-info px-3 py-2">Show Order</a>
                                                                     </td>
                                                                 </tr>
                                                             @endforeach
@@ -295,7 +315,7 @@
                                                         <tr>
                                                             <th>Order ID</th>
                                                             <th>Customer</th>
-                                                            <th>Date</th>
+                                                            {{-- <th>Date</th> --}}
                                                             <th>Price</th>
                                                             <th>Payment</th>
                                                             <th>Delivery</th>
@@ -306,22 +326,42 @@
                                                         <tbody>
                                                         @if($orders)
                                                             @foreach($completed_orders as $item)
-                                                                <tr>
-                                                                    <th>#00{{$item->id}}</th>
-                                                                    <td>{{$item->user->name}}</td>
-                                                                    <td>{{ Carbon\Carbon::parse($item->created_at)->format("Y-m-d H:i:s") }}</td>
-                                                                    <td>${{ $item->total_value }}</td>
-                                                                    <td><span
-                                                                            class="rbt-badge-5 bg-color-success-opacity color-success">{{ $item->payment_status }}</span>
-                                                                    </td>
-                                                                    <td><span
-                                                                            class="rbt-badge-5 bg-color-success-opacity color-success">{{ $item->delivery_status }}</span>
-                                                                    </td>
-                                                                    <td>
-                                                                        <a href="{{ route("order.detail",$item->id) }}" class="me-2 btn btn-sm btn-primary">Show</a>
-                                                                        <button class="me-2 btn btn-sm btn-primary">Delete</button>
-                                                                    </td>
-                                                                </tr>
+                                                            <tr>
+                                                                <th>#00{{$item->id}}</th>
+                                                                <td>{{$item->user->name}}</td>
+                                                                {{-- <td>{{ Carbon\Carbon::parse($item->created_at)->format("Y-m-d H:i:s") }}</td> --}}
+                                                                <td>${{ $item->total_value }}</td>
+                                                                <td><span
+                                                                        class="rbt-badge-5
+                                                                        @if($item->payment_status == "approved") bg-color-success-opacity color-success
+                                                                        @elseif($item->payment_status == "cancelled")
+                                                                        bg-color-danger-opacity color-danger
+                                                                        @elseif($item->payment_status == "pending")
+                                                                        bg-color-warning-opacity color-warning
+                                                                        @endif
+                                                                        ">{{ $item->payment_status }}</span>
+                                                                </td>
+                                                                <td><span
+                                                                        class="rbt-badge-5
+
+
+                                                                        @if($item->delivery_status == "approved") bg-color-success-opacity color-success
+                                                                        @elseif($item->delivery_status == "cancelled")
+                                                                        bg-color-danger-opacity color-danger
+                                                                        @elseif($item->delivery_status == "pending")
+                                                                        bg-color-warning-opacity color-warning
+                                                                        @elseif($item->delivery_status == "dispatched")
+                                                                        bg-color-primary-opacity color-primary
+                                                                        @elseif($item->delivery_status == "delivered")
+                                                                        bg-color-dark-opacity color-dark
+                                                                        @endif
+
+                                                                        ">{{ $item->delivery_status }}</span>
+                                                                </td>
+                                                                <td>
+                                                                    <a href="{{ route("order.detail",$item->id) }}" class="me-2 btn btn-md rounded-pill btn-info px-3 py-2">Show Order</a>
+                                                                </td>
+                                                            </tr>
                                                             @endforeach
                                                         @endif
                                                         {{--                                            <tr>--}}
@@ -455,7 +495,7 @@
                                                         <tr>
                                                             <th>Order ID</th>
                                                             <th>Customer</th>
-                                                            <th>Date</th>
+                                                            {{-- <th>Date</th> --}}
                                                             <th>Price</th>
                                                             <th>Payment</th>
                                                             <th>Delivery</th>
@@ -466,23 +506,43 @@
                                                         <tbody>
                                                         @if($orders)
                                                             @foreach($orders as $item)
-                                                                <tr>
-                                                                    <th>#00{{$item->id}}</th>
-                                                                    <td>{{$item->user->name}}</td>
-                                                                    <td>{{ Carbon\Carbon::parse($item->created_at)->format("Y-m-d H:i:s") }}</td>
-                                                                    <td>${{ $item->total_value }}</td>
-                                                                    <td><span
-                                                                            class="rbt-badge-5 bg-color-success-opacity color-success">{{ $item->payment_status }}</span>
-                                                                    </td>
-                                                                    <td><span
-                                                                            class="rbt-badge-5 bg-color-success-opacity color-success">{{ $item->delivery_status }}</span>
-                                                                    </td>
-                                                                    <td>
-                                                                        <a href="{{ route("order.detail",$item->id) }}" class="me-2 btn btn-sm btn-primary">Show</a>
-                                                                        <button class="me-2 btn btn-sm btn-primary">Delete</button>
-                                                                    </td>
-                                                                </tr>
-                                                            @endforeach
+                                                            <tr>
+                                                                <th>#00{{$item->id}}</th>
+                                                                <td>{{$item->user->name}}</td>
+                                                                {{-- <td>{{ Carbon\Carbon::parse($item->created_at)->format("Y-m-d H:i:s") }}</td> --}}
+                                                                <td>${{ $item->total_value }}</td>
+                                                                <td><span
+                                                                        class="rbt-badge-5
+                                                                        @if($item->payment_status == "approved") bg-color-success-opacity color-success
+                                                                        @elseif($item->payment_status == "cancelled")
+                                                                        bg-color-danger-opacity color-danger
+                                                                        @elseif($item->payment_status == "pending")
+                                                                        bg-color-warning-opacity color-warning
+                                                                        @endif
+                                                                        ">{{ $item->payment_status }}</span>
+                                                                </td>
+                                                                <td><span
+                                                                        class="rbt-badge-5
+
+
+                                                                        @if($item->delivery_status == "approved") bg-color-success-opacity color-success
+                                                                        @elseif($item->delivery_status == "cancelled")
+                                                                        bg-color-danger-opacity color-danger
+                                                                        @elseif($item->delivery_status == "pending")
+                                                                        bg-color-warning-opacity color-warning
+                                                                        @elseif($item->delivery_status == "dispatched")
+                                                                        bg-color-primary-opacity color-primary
+                                                                        @elseif($item->delivery_status == "delivered")
+                                                                        bg-color-dark-opacity color-dark
+                                                                        @endif
+
+                                                                        ">{{ $item->delivery_status }}</span>
+                                                                </td>
+                                                                <td>
+                                                                    <a href="{{ route("order.detail",$item->id) }}" class="me-2 btn btn-md rounded-pill btn-info px-3 py-2">Show Order</a>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
                                                         @endif
                                                         {{--                                            <tr>--}}
                                                         {{--                                                <th>#4585</th>--}}
