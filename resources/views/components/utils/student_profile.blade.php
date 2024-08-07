@@ -10,12 +10,12 @@
                             <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin"
                                 class="rounded-circle" width="150">
                             <div class="mt-3">
-                                <h4> {{ $enrollment->enrolled_students->name }}</h4>
+                                <h4> {{ $student->name }}</h4>
                                 <p class="text-secondary mb-1">Student since
-                                    {{ \Carbon\Carbon::parse($enrollment->enrolled_students->created_at)->format('Y') }}
+                                    {{ \Carbon\Carbon::parse($student->created_at)->format('Y') }}
                                 </p>
 
-                                
+
 
                             </div>
                         </div>
@@ -31,7 +31,7 @@
                                 <h6 class="mb-0">Full Name</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                {{ $enrollment->enrolled_students->name }}
+                                {{ $student->name }}
                             </div>
                         </div>
                         <hr>
@@ -40,7 +40,7 @@
                                 <h6 class="mb-0">Email</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                {{ $enrollment->enrolled_students->email }}
+                                {{ $student->email }}
                             </div>
                         </div>
                         <hr>
@@ -49,7 +49,7 @@
                                 <h6 class="mb-0">Phone</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                {{ $enrollment->enrolled_students->phone }}
+                                {{ $student->phone }}
                             </div>
                         </div>
                         <hr>
@@ -58,7 +58,7 @@
                                 <h6 class="mb-0">Account created</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                {{ \Carbon\Carbon::parse($enrollment->enrolled_students->created_at)->format('D d M,Y h:i A') }}
+                                {{ \Carbon\Carbon::parse($student->created_at)->format('D d M,Y h:i A') }}
                             </div>
                         </div>
                         <hr>
@@ -67,8 +67,8 @@
                                 <h6 class="mb-0">Address</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                @if ($enrollment->enrolled_students->address->isNotEmpty())
-                                    {{ $enrollment->enrolled_students->address->first->country . '/' . $enrollment->enrolled_students->address->first->country }}
+                                @if ($student->address->isNotEmpty())
+                                    {{ $student->address->first->country . '/' . $student->address->first->country }}
                                 @else
                                     Not Provided
                                 @endif
@@ -96,8 +96,8 @@
                                         </svg>Other Course purchased</h6>
                                     <span class="text-secondary"></span>
                                 </li>
-                                @if ($enrollment->enrolled_students->enrollment->isNotEmpty())
-                                    @foreach ($enrollment->enrolled_students->enrollment as $item)
+                                @if ($student->enrollment->isNotEmpty())
+                                    @foreach ($student->enrollment as $item)
                                         <a href="{{ route('enrollment_single', $item->id) }}">
                                             <li
                                                 class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -115,15 +115,8 @@
                                 @else
                                     <li
                                         class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                        <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-twitter mr-2 icon-inline text-info">
-                                                <path
-                                                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
-                                                </path>
-                                            </svg>Twitter</h6>
-                                        <span class="text-secondary">No Enrollment yet</span>
+                                        <h6 class="mb-0">No Enrollment yet</h6>
+                                        {{-- <span class="text-secondary"></span> --}}
                                     </li>
                                 @endif
 
@@ -149,8 +142,8 @@
                                         </svg>Orders</h6>
                                     <span class="text-secondary"></span>
                                 </li>
-                                @if ($enrollment->enrolled_students->order->isNotEmpty())
-                                    @foreach ($enrollment->enrolled_students->order as $item)
+                                @if ($student->order->isNotEmpty())
+                                    @foreach ($student->order as $item)
                                         <a href="{{ route('order.detail', $item->id) }}">
                                             <li
                                                 class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -171,16 +164,8 @@
                                 @else
                                     <li
                                         class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                        <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                class="feather feather-twitter mr-2 icon-inline text-info">
-                                                <path
-                                                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
-                                                </path>
-                                            </svg>Twitter</h6>
-                                        <span class="text-secondary">No Orders yet</span>
+                                        <h6 class="mb-0">No Orders yet</h6>
+                                        {{-- <span class="text-secondary"></span> --}}
                                     </li>
                                 @endif
 

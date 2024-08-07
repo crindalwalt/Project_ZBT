@@ -21,7 +21,7 @@
                         </div>
 
                         <div class="col-lg-9 mb-5">
-                            <!-- Start Enrole Course  -->
+                            <!-- Enrollment details  -->
                             <div class="rbt-dashboard-content bg-color-white rbt-shadow-box">
                                 <div class="content">
                                     <div class="section-title">
@@ -53,78 +53,64 @@
                                                                             <path
                                                                                 d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
                                                                             </path>
-                                                                        </svg>Website</h6>
-                                                                    <span
-                                                                        class="text-secondary">https://bootdey.com</span>
+                                                                        </svg>Payment Detail</h6>
+
                                                                 </li>
                                                                 <li
                                                                     class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                                                    <h6 class="mb-0"><svg
-                                                                            xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-github mr-2 icon-inline">
-                                                                            <path
-                                                                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                                                                            </path>
-                                                                        </svg>Github</h6>
-                                                                    <span class="text-secondary">bootdey</span>
+                                                                    <span class="text-secondary">payment status</span>
+                                                                    <h6 class="mb-0">
+                                                                        @if ($enrollment->payment_status == 'success')
+                                                                            <div
+                                                                                class="badge rounded-pill bg-success px-3">
+                                                                                {{ $enrollment->payment_status }}
+                                                                            </div>
+                                                                        @elseif($enrollment->payment_status == 'pending')
+                                                                            <div
+                                                                                class="badge rounded-pill bg-secondary px-3">
+                                                                                {{ $enrollment->payment_status }}
+                                                                            </div>
+                                                                        @elseif($enrollment->payment_status == 'declined')
+                                                                            <div
+                                                                                class="badge rounded-pill bg-danger px-3">
+                                                                                {{ $enrollment->payment_status }}
+                                                                            </div>
+                                                                        @endif
+
+                                                                    </h6>
+
                                                                 </li>
                                                                 <li
                                                                     class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                                                    <h6 class="mb-0"><svg
-                                                                            xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-twitter mr-2 icon-inline text-info">
-                                                                            <path
-                                                                                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
-                                                                            </path>
-                                                                        </svg>Twitter</h6>
-                                                                    <span class="text-secondary">@bootdey</span>
+                                                                    <span class="text-secondary">payment Amount</span>
+                                                                    <h6 class="mb-0">
+                                                                        <div
+                                                                            class="badge rounded-pill bg-secondary text-white px-3">
+                                                                            ${{ $enrollment->course->discount_price }}
+                                                                        </div>
+                                                                    </h6>
+
                                                                 </li>
                                                                 <li
                                                                     class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                                                    <h6 class="mb-0"><svg
-                                                                            xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-instagram mr-2 icon-inline text-danger">
-                                                                            <rect x="2" y="2" width="20"
-                                                                                height="20" rx="5"
-                                                                                ry="5"></rect>
-                                                                            <path
-                                                                                d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z">
-                                                                            </path>
-                                                                            <line x1="17.5" y1="6.5"
-                                                                                x2="17.51" y2="6.5"></line>
-                                                                        </svg>Instagram</h6>
-                                                                    <span class="text-secondary">bootdey</span>
+                                                                    <span class="text-secondary">payment Date</span>
+                                                                    <h6 class="mb-0">
+                                                                        <div
+                                                                            class="badge rounded-pill bg-secondary text-white px-3">
+                                                                            {{ \Carbon\Carbon::parse($enrollment->updated_at)->format('d D M Y h:i A') }}
+                                                                        </div>
+                                                                    </h6>
+
                                                                 </li>
+
+
+
                                                                 <li
                                                                     class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                                                    <h6 class="mb-0"><svg
-                                                                            xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-facebook mr-2 icon-inline text-primary">
-                                                                            <path
-                                                                                d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z">
-                                                                            </path>
-                                                                        </svg>Facebook</h6>
-                                                                    <span class="text-secondary">bootdey</span>
+                                                                    <a href="https://dashboard.stripe.com/dashboard"
+                                                                        class="mb-0 btn btn-lg btn-primary ">visit
+                                                                        Stripe</a>
+
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -134,55 +120,68 @@
                                                             <div class="card-body">
                                                                 <div class="row">
                                                                     <div class="col-sm-3">
-                                                                        <h6 class="mb-0">Full Name</h6>
+                                                                        <h6 class="mb-0">Course name</h6>
                                                                     </div>
                                                                     <div class="col-sm-9 text-secondary">
-                                                                        Kenneth Valdez
+                                                                        {{ $enrollment->course->title }}
                                                                     </div>
                                                                 </div>
                                                                 <hr>
                                                                 <div class="row">
                                                                     <div class="col-sm-3">
-                                                                        <h6 class="mb-0">Email</h6>
+                                                                        <h6 class="mb-0">duration</h6>
                                                                     </div>
                                                                     <div class="col-sm-9 text-secondary">
-                                                                        fip@jukmuh.al
+                                                                        {{ $enrollment->course->duration }} Months
                                                                     </div>
                                                                 </div>
                                                                 <hr>
                                                                 <div class="row">
                                                                     <div class="col-sm-3">
-                                                                        <h6 class="mb-0">Phone</h6>
+                                                                        <h6 class="mb-0">Purchased at</h6>
                                                                     </div>
                                                                     <div class="col-sm-9 text-secondary">
-                                                                        (239) 816-9029
+                                                                        {{ \Carbon\Carbon::parse($enrollment->created_at)->format('D d M Y h:i A') }}
                                                                     </div>
                                                                 </div>
                                                                 <hr>
                                                                 <div class="row">
                                                                     <div class="col-sm-3">
-                                                                        <h6 class="mb-0">Mobile</h6>
+                                                                        <h6 class="mb-0">Enrollment status</h6>
                                                                     </div>
                                                                     <div class="col-sm-9 text-secondary">
-                                                                        (320) 380-4539
+                                                                        @if ($enrollment->enrollment_status == 'active')
+                                                                            <div
+                                                                                class="badge rounded-pill bg-success text-white px-3">
+                                                                                {{ $enrollment->enrollment_status }}
+                                                                            </div>
+                                                                        @elseif($enrollment->enrollment_status == 'pending')
+                                                                            <div
+                                                                                class="badge rounded-pill bg-secondary text-white px-3">
+                                                                                {{ $enrollment->enrollment_status }}
+                                                                            </div>
+                                                                        @elseif($enrollment->enrollment_status == 'expelled')
+                                                                            <div
+                                                                                class="badge rounded-pill bg-danger text-white px-3">
+                                                                                {{ $enrollment->enrollment_status }}
+                                                                            </div>
+                                                                        @endif
+
+
                                                                     </div>
                                                                 </div>
                                                                 <hr>
                                                                 <div class="row">
                                                                     <div class="col-sm-3">
-                                                                        <h6 class="mb-0">Address</h6>
+                                                                        <h6 class="mb-0">Batches Available</h6>
                                                                     </div>
                                                                     <div class="col-sm-9 text-secondary">
-                                                                        Bay Area, San Francisco, CA
+                                                                        {{ count($enrollment->course->batches) }}
+                                                                        Batches
                                                                     </div>
                                                                 </div>
-                                                                <hr>
-                                                                <div class="row">
-                                                                    <div class="col-sm-12">
-                                                                        <a class="btn btn-info " target="__blank"
-                                                                            href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
-                                                                    </div>
-                                                                </div>
+
+
                                                             </div>
                                                         </div>
 
@@ -200,14 +199,72 @@
 
                                 </div>
                             </div>
+                            {{-- Enrollment batch selecting form  --}}
+                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box my-5">
+                                <div class="content">
+                                    <div class="section-title ">
+                                        <h4 class="rbt-title-style-3">Enroll Student</h4>
+                                    </div>
+                                    {{-- @dd($enrollment->enrolled_students) --}}
+                                    @if ($batches->isNotEmpty())
+                                        <div class="section-content">
 
+
+                                            <form action="{{  route("badge.student.enroll",$student->id) }}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="enrollment_id" value="{{ $enrollment->id }}">
+
+                                                <div class="mb-3">
+                                                    <label for="students" class="form-label">Select Students</label>
+                                                    <select class="form-select w-100" id="students" name="batch">
+                                                        @foreach ($batches as $item)
+                                                            <option value="{{ $item->id }}">
+                                                                {{ $item->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('student_id')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+
+
+
+                                                <div class="mb-3">
+                                                    <button type="submit"
+                                                        class="mt-4 btn btn-lg btn-primary px-5 py-3 w-100">Add
+                                                        Badge</button>
+                                                </div>
+                                            </form>
+
+
+                                        </div>
+                                    @else
+                                        <div class="section-content">
+
+
+                                            <div class="d-flex justify-content-between align-items-center p-3">
+                                                <div>
+                                                    <h4>There is no Batches currently available for {{ $enrollment->course->title }}</h4>
+                                                    <a href="{{ route("badges.all") }}" class="btn btn-lg py-3 btn-primary px-4">Create new Batch</a>
+                                                </div>
+
+                                                </div>
+
+
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                            {{-- Student profile component --}}
                             <div class="rbt-dashboard-content bg-color-white rbt-shadow-box my-5">
                                 <div class="content">
                                     <div class="section-title ">
                                         <h4 class="rbt-title-style-3">Student Details</h4>
                                     </div>
+                                    {{-- @dd($enrollment->enrolled_students) --}}
                                     <div class="section-content">
-                                        <x-utils.student_profile :enrollment="$enrollment" />
+                                        <x-utils.student_profile :student="$student" />
                                     </div>
                                 </div>
                             </div>

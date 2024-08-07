@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreEnrollmentRequest;
 use App\Http\Requests\UpdateEnrollmentRequest;
 use App\Jobs\CancelSubscription;
+use App\Models\Badge;
 use App\Models\Course;
 use App\Models\Enrollment;
 use Carbon\Carbon;
@@ -155,6 +156,12 @@ class EnrollmentController extends Controller
     {
         // dd($enrollment);
         $data['enrollment'] = $enrollment;
+        $data['batches'] = Badge::where('course_id', $enrollment->course_id)->get();
+
+        $data['student'] = $enrollment->enrolled_students;
+
+
+    // dd($data);
         return view("pages.admin.students.enrollment_detail")->with($data);
     }
 

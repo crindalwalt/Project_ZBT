@@ -26,6 +26,25 @@ class BadgeController extends Controller
         return view("pages.admin.students.badges_all")->with($data);
     }
 
+    public function enroll(Request $request, User $student)
+    {
+        // $data[""] =
+        // dd($request->all());
+
+        $badge  = Badge::find($request->input("batch"));
+        if ($badge->badgeStudents->contains("user_id", $student->id)) {
+            Alert::warning("Student Already added",);
+            return redirect()->back();
+        } else {
+
+
+            $badge->badgeStudents()->create(["user_id" => $student->id]);
+            $enrollment = Enrollment::find($request->input("enrollment_id"));
+            $enrollment->update(["enrollment_status" => "active"]);
+            Alert::success("Student added to This Batch", "Student can view and attend the batch now");
+            return redirect()->back();
+        }
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -98,7 +117,8 @@ class BadgeController extends Controller
         //
     }
 
-    public function expel(BadgeStudents $badgeStudent){
+    public function expel(BadgeStudents $badgeStudent)
+    {
         $badgeStudent->delete();
         Alert::success("Student Expeled from this badge");
         return redirect()->back();

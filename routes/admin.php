@@ -60,6 +60,7 @@ Route::middleware([AdminCheck::class,"auth","verified"])->prefix("/admin")->grou
     Route::get("/badge/{badge}/create",[BadgeController::class, "create"])->name("badge.create");
     Route::post("/badge/store",[BadgeController::class ,"store"])->name("badge.store");
     Route::post("/badge/{badge}/store",[BadgeController::class,"student_store"])->name("badge.store.students");
+    Route::post("/badge/{student}/enroll",[BadgeController::class,"enroll"])->name("badge.student.enroll");
     Route::get("/badge/{badgeStudent}/expel",[BadgeController::class, "expel"])->name("badge.students.expel");
 });
 

@@ -161,10 +161,11 @@
                                 </a>
                             </div>
                             <div class="rbt-card-body">
-                                
 
-                                <h4 class="rbt-card-title"><a href="{{ route("course.detail", $item->slug) }}">React
-                                        Front To Back</a>
+
+                                <h4 class="rbt-card-title"><a href="{{ route("course.detail", $item->slug) }}">
+                                    {{ $item->title }}
+                                </a>
                                 </h4>
 
                                 <ul class="rbt-meta">

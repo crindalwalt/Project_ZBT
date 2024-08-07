@@ -20,13 +20,13 @@
                         </div>
 
                         <div class="col-lg-9">
-                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box my-5">
+                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box mb-5">
                                 <div class="content">
                                     <div class="section-title ">
                                         <h4 class="rbt-title-style-3">Student Details</h4>
                                     </div>
                                     <div class="section-content">
-                                        <x-utils.student_profile :enrollment="$enrollment" />
+                                        <x-utils.student_profile :student="$student" />
                                     </div>
                                 </div>
                             </div>
