@@ -73,7 +73,7 @@
                                                             <td>
                                                                 {{-- <a href="{{ route('students.transform', $item->id) }}"
                                                                     class="me-2 btn btn-sm btn-primary">Assign as Teacher</a> --}}
-                                                                    <a href="" class="btn btn-md btn-primary rounded-pill">View Visitor</a>
+                                                                    <a href="{{ route("single_student",$item->id) }}" class="btn btn-md btn-primary rounded-pill">View Visitor</a>
 
                                                             </td>
                                                         </tr>

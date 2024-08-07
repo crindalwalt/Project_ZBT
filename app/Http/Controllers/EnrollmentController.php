@@ -31,47 +31,46 @@ class EnrollmentController extends Controller
         if (!$user->stripe_id) {
             $user->createAsStripeCustomer();
         }
-//        $paymentMethod = $request->paymentMethod;
-//
-//        $user->createOrGetStripeCustomer();
-//        $user->updateDefaultPaymentMethod($paymentMethod);
-//        $user->newSubscription('default', 'plan_id')->create($paymentMethod);
-//        return response()->json(['status' => 'success']);
+        //        $paymentMethod = $request->paymentMethod;
+        //
+        //        $user->createOrGetStripeCustomer();
+        //        $user->updateDefaultPaymentMethod($paymentMethod);
+        //        $user->newSubscription('default', 'plan_id')->create($paymentMethod);
+        //        return response()->json(['status' => 'success']);
 
 
         // Create the subscription
-//        $subscription = $user->newSubscription('default', 'price_1POHcjCfbf5mW58WMuHFEUuo')->create();
+        //        $subscription = $user->newSubscription('default', 'price_1POHcjCfbf5mW58WMuHFEUuo')->create();
 
         // Define the end date (e.g., 3 months from now)
 
         // Create a subscription schedule to cancel after 3 months
-//        $schedule = SubscriptionSchedule::create([
-//            'customer' => $user->stripe_id,
-//            'start_date' => 'now',
-//            'phases' => [
-//                [
-//                    'items' => [
-//                        [
-//                            'price' => 'price_1Hh1uUInSoP4eX9l8bG1x3YZ', // Your price ID
-//                            'quantity' => 1,
-//                        ],
-//                    ],
-//                    'end_date' => $endDate,
-//                ],
-//            ],
-//            'end_behavior' => 'cancel',
-//        ]);
-//        $trialEnds = now()->addMonth(3);
+        //        $schedule = SubscriptionSchedule::create([
+        //            'customer' => $user->stripe_id,
+        //            'start_date' => 'now',
+        //            'phases' => [
+        //                [
+        //                    'items' => [
+        //                        [
+        //                            'price' => 'price_1Hh1uUInSoP4eX9l8bG1x3YZ', // Your price ID
+        //                            'quantity' => 1,
+        //                        ],
+        //                    ],
+        //                    'end_date' => $endDate,
+        //                ],
+        //            ],
+        //            'end_behavior' => 'cancel',
+        //        ]);
+        //        $trialEnds = now()->addMonth(3);
 
-        $stripeSession = $user->newSubscription('default', $course->price_id)// Replace with your actual price ID from Stripe
-        ->checkout([
-            'success_url' => route('subscription.success', ["id" => $course->id]),
-            'cancel_url' => route('subscription.cancel'),
-        ]);
+        $stripeSession = $user->newSubscription('default', $course->price_id) // Replace with your actual price ID from Stripe
+            ->checkout([
+                'success_url' => route('subscription.success', ["id" => $course->id]),
+                'cancel_url' => route('subscription.cancel'),
+            ]);
         $endDate = Carbon::now()->addMonths(3);
         CancelSubscription::dispatch($user->id)->delay($endDate);
         return redirect($stripeSession->url);
-
     }
 
 
@@ -99,13 +98,15 @@ class EnrollmentController extends Controller
 
 
 
-    public function all_enrollments (){
+    public function all_enrollments()
+    {
         $data['enrollments'] = Enrollment::latest()->get();
         return view("pages.admin.students.enrollment_all")->with($data);
     }
 
-    public function course_enrollment (Course $course){
-        $data['students'] = $course->students ;
+    public function course_enrollment(Course $course)
+    {
+        $data['students'] = $course->students;
         return view("pages.admin.students.course_enrollment")->with($data);
     }
 
@@ -152,7 +153,9 @@ class EnrollmentController extends Controller
      */
     public function show(Enrollment $enrollment)
     {
-        //
+        // dd($enrollment);
+        $data['enrollment'] = $enrollment;
+        return view("pages.admin.students.enrollment_detail")->with($data);
     }
 
     /**

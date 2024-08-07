@@ -96,7 +96,7 @@
                                                         </td>
 
                                                             <td>
-                                                                <a href="{{ route('students.transform', $item->id) }}"
+                                                                <a href="{{ route('enrollment_single', $item->id) }}"
                                                                     class="me-2 btn btn-sm btn-primary rounded-pill px-2 ">View Student</a>
 
                                                             </td>

@@ -150,6 +150,12 @@ class HomeController extends Controller
         return view('pages.user.account')->with($data);
     }
 
+    public function single_student(User $user)
+    {
+        $data['student'] = $user;
+        $data['enrollment'] = $user->enrollment;
+        return view('pages.admin.students.student_detail')->with($data);
+    }
 
     public function invoice(Order $order)
     {

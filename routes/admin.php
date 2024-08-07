@@ -45,11 +45,13 @@ Route::middleware([AdminCheck::class,"auth","verified"])->prefix("/admin")->grou
 
     # STUDENTS
     Route::get("/students",[HomeController::class,"all_students"])->name("all_students");
+    Route::get("/student/{user}/view",[HomeController::class,"single_student"])->name("single_student");
     Route::get("/student/{user}/transform",[HomeController::class,'student_transform'])->name("students.transform");
 
 
     # ENROLLMENTS
     Route::get("/enrollments",[EnrollmentController::class, "all_enrollments"])->name("enrollment.show_all");
+    Route::get("/enrollment/{enrollment}/view",[EnrollmentController::class,"show"])->name("enrollment_single");
     Route::get("/enrollment/{course:slug}",[EnrollmentController::class, 'course_enrollment'])->name("course_enrollments");
 
 
