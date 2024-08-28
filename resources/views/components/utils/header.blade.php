@@ -176,7 +176,7 @@
                                                         <div class="admin-info">
                                                             <span class="name">{{ auth()->user()->name }}</span>
 
-                                                            
+
                                                         </div>
                                                     </div>
                                                     <ul class="user-list-wrapper">
@@ -328,7 +328,7 @@
 
                         <div class="rbt-btn-wrapper d-none d-xl-block">
                             <a class="rbt-btn  whatsapp-color btn-sm hover-transform-none d-flex align-items-center"
-                                href="https://wa.me/+923070825484">
+                                href="https://wa.me/+923226767409">
 
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                     fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
@@ -380,7 +380,7 @@
                         <a href="mailto:hello@example.com"><i class="feather-mail"></i>example@gmail.com</a>
                     </li>
                     <li>
-                        <a href="#"><i class="feather-phone"></i>(302) 555-0107</a>
+                        <a href="#"><i class="feather-phone"></i>(+92)0322 6767409</a>
                     </li>
                 </ul>
             </div>
@@ -416,7 +416,7 @@
 
                 <div class="rbt-btn-wrapper d-none d-xl-block">
                     <a class="rbt-btn  whatsapp-color btn-sm hover-transform-none d-flex align-items-center"
-                        href="https://wa.me/+923070825484">
+                        href="https://wa.me/+923226767409">
 
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             class="bi bi-whatsapp" viewBox="0 0 16 16">
