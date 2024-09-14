@@ -20,7 +20,7 @@
         </div>
     </div>
     <!-- End Breadcrumb Area -->
-    <form action="{{ route("checkout.save") }}" method="POST">
+    <form action="{{ route("buy.now.checkout",$product->id) }}" method="POST">
         @csrf
         <div class="checkout_area bg-color-white rbt-section-gap">
             <div class="container">
@@ -110,7 +110,7 @@
 
                             </div>
 
-                           
+
 
                         </div>
                     </div>
@@ -120,25 +120,27 @@
                             <!-- Cart Total -->
                             <div class="col-12 mb--60">
 
-                                <h4 class="checkout-title">Cart Total</h4>
+                                {{-- <h4 class="checkout-title">Cart Total</h4> --}}
 
                                 <div class="checkout-cart-total">
 
                                     <h4>Product <span>Total</span></h4>
 
                                     <ul>
-                                        @if($cart)
-                                            @foreach($cart->items as $item)
-                                                <li>{{ $item->product->title }} X {{ $item->quantity }}
-                                                    <span>${{ $item->quantity * $item->product->discount_price }}</span>
+                                        @if($product)
+
+                                                <li>{{ $product->title }} X {{ $quantity ?? "1" }}
+                                                    <span>${{ 1 * $product->discount_price }}</span>
                                                 </li>
-                                            @endforeach
+
                                         @endif
                                         {{--                                    <li>Aquet Drone D 420 X 02 <span>$550.00</span></li>--}}
                                         {{--                                    <li>Play Station X 22 X 01 <span>$295.00</span></li>--}}
                                         {{--                                    <li>Roxxe Headphone Z 75 X 01 <span>$110.00</span></li>--}}
                                     </ul>
-                                    @php
+
+                                    {{-- ? commented --}}
+                                    {{-- @php
                                         $sub_total = 0;
                                         $shipping_fee = 15;
                                         foreach ($cart->items as $item){
@@ -147,13 +149,13 @@
 
                                         }
                                         $grand_total = $sub_total ;
-                                    @endphp
+                                    @endphp --}}
 
 
-                                    <p>Sub Total <span>${{ $sub_total }}</span></p>
+                                    <p>Sub Total <span>${{ $product->discount_price }}</span></p>
                                     <p>Shipping Fee <span>$0</span></p>
 
-                                    <h4 class="mt--30">Grand Total <span>${{ $grand_total }}</span></h4>
+                                    <h4 class="mt--30">Grand Total <span>${{ $product->discount_price }}</span></h4>
 
                                 </div>
 

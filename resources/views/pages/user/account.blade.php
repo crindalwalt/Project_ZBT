@@ -19,13 +19,13 @@
             </div>
         </div>
     </div>
-    <!-- End Breadcrumb Area -->
+    <!-- End Breadcrumb Area -->    
+
     <div class="my-account-section bg-color-white rbt-section-gap">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="row g-5">Logo
-                        Favicon
+                    <div class="row g-5">
                         <!-- My Account Tab Menu Start -->
                         <div class="col-lg-3 col-12">
                             <div class="rbt-my-account-tab-button nav" role="tablist">

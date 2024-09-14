@@ -42,7 +42,7 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
 
-//        dd($request->all());
+        //        dd($request->all());
         /** @noinspection PhpUnreachableStatementInspection */
         $productSlug = Str::slug($request->title, "-");
 
@@ -58,11 +58,11 @@ class ProductController extends Controller
 
         ]);
         $productKey = Product::find($saveProduct->getKey());
-//        dd($productKey->media);
+        //        dd($productKey->media);
 
         if ($request->hasFile("image")) {
             foreach ($request->file("image") as $item) {
-//                dd("reached in the array iteration");
+                //                dd("reached in the array iteration");
                 $image = $item;
                 $imageName = "Book-" . time() . "." . $image->extension();
                 $image->storeAs("public/ProductImages", $imageName);
@@ -70,7 +70,6 @@ class ProductController extends Controller
                     'image' => "storage/ProductImages/" . $imageName,
                 ]);
             }
-
         }
         Alert::success("success", "Product added Successfully");
         return redirect()->back();
@@ -80,7 +79,7 @@ class ProductController extends Controller
     {
         $data['product'] = $product;
         $data['randomProducts'] = Product::inRandomOrder()->take(3)->get();
-//        $data['productReviews']
+        //        $data['productReviews']
         return view("pages.user.shop_detail")->with($data);
     }
 
@@ -115,7 +114,6 @@ class ProductController extends Controller
 
         ];
         return view("pages.admin.products.product_edit")->with($data);
-
     }
 
     /**
@@ -146,7 +144,6 @@ class ProductController extends Controller
                     'image' => $imageName,
                 ]);
             }
-
         }
         Alert::success("success", "Product Updated Successfully");
         return redirect()->route("admin.products.all");
@@ -160,7 +157,6 @@ class ProductController extends Controller
         $product->delete();
         Alert::success("success", "Product Deleted Successfully");
         return redirect()->back();
-
     }
 
 
@@ -168,7 +164,14 @@ class ProductController extends Controller
 
 
 
+    // BUY NOW
 
+    public function buy_now(Product $product)
+    {
+        $data['product'] = $product;
+        $data['quantity'] = 1;
+        return view("pages.user.checkout.prod_checkout")->with($data);
+    }
 
 
 

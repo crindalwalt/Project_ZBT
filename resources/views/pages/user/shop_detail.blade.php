@@ -62,7 +62,7 @@
                         <div class="product-action mb--20">
                             {{-- <div class="pro-qty"><input type="text" value="1"></div>--}}
                             <div class="addto-cart-btn">
-                                <a class="rbt-btn btn-gradient hover-icon-reverse" href="cart.html">
+                                <a class="rbt-btn btn-gradient hover-icon-reverse" href="{{  route("buy.now",$product->id) }}">
                                     <span class="icon-reverse-wrapper">
                                         <span class="btn-text">Order Now</span>
                                         <span class="btn-icon"><i class="feather-arrow-right"></i></span>
@@ -211,7 +211,7 @@
                                     to login</a>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
-                                                                            
+
 
 
                         @else

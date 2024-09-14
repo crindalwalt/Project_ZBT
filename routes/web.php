@@ -25,6 +25,13 @@ Route::get("/product/{product:slug}", [ProductController::class, 'product_detail
 
 Route::post("/review/{product}/store", [ProductReviewsController::class, 'store'])->name("user.product.review");
 Route::middleware(['auth', UserCheck::class])->group(function () {
+
+    // Product Buy Now
+    Route::get("/buy/{product}", [ProductController::class, "buy_now"])->name("buy.now");
+    Route::post("/buy/{product}", [CheckoutController::class, "buyNowCheckout"])->name("buy.now.checkout");
+
+
+    // Checkout
     Route::get('/checkout', [HomeController::class, 'checkout'])->name("checkout");
     Route::post('/checkout/save', [CheckoutController::class, 'checkout_save'])->name("checkout.save");
     Route::get('checkout/process', [CheckoutController::class, 'createCheckoutSession'])->name('checkout.create');
@@ -34,8 +41,7 @@ Route::middleware(['auth', UserCheck::class])->group(function () {
 
     Route::get('/account', [HomeController::class, "account"])->name("account");
     Route::get('/invoice/{order}/generate', [HomeController::class, "invoice"])->name("invoice.generate");
-    Route::get("/terms-and-conditions", function () {
-    })->name("terms_and_condition");
+    Route::get("/terms-and-conditions", function () {})->name("terms_and_condition");
 
 
     Route::get("/course/{course:slug}/buy", [EnrollmentController::class, 'index'])->name("course.enrollment.buy");
@@ -47,10 +53,10 @@ Route::middleware(['auth', UserCheck::class])->group(function () {
         ]);
     })->name("subscription.cancel");
 
-    Route::get("/class/{badge}/view",[HomeController::class,"student_class"])->name("student.class");
+    Route::get("/class/{badge}/view", [HomeController::class, "student_class"])->name("student.class");
 
-    # Password change 
-    Route::post("/password/change",[HomeController::class,"password_change"])->name("password.change");
+    # Password change
+    Route::post("/password/change", [HomeController::class, "password_change"])->name("password.change");
 });
 
 //Route::get("/test", function () {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserAddressRequest;
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
@@ -13,6 +14,64 @@ use RealRashid\SweetAlert\Facades\Alert;
 class CheckoutController extends Controller
 {
 
+    public function buyNowCheckout(StoreUserAddressRequest $request, Product $product)
+    {
+        $address = auth()->user()->address()->create([
+            'line_1' => $request->biling_line_1,
+            'line_2' => $request->biling_line_2,
+            'country' => $request->country,
+            'city' => $request->city,
+            'state' => $request->state,
+            'zipcode' => $request->zipcode,
+        ]);
+        $key = $address->getKey();
+
+        $data['address_id'] = $key;
+
+
+        $total_price = 0;
+        $lineItems = [];
+        $cartItems = auth()->user()->cart->items;
+        $orderId = auth()->user()->order()->create([
+            'user_address_id' => $key,
+            "delivery_status" => "pending",
+            "payment_status" => "pending",
+            "total_value" => "0"
+        ]);
+
+
+        $lineItems[] = [
+            'price_data' => [
+                'currency' => 'usd',
+                'product_data' => [
+                    'name' => $product->title,
+                ],
+                'unit_amount' => $product->discount_price * 100, // assuming price is in dollars
+            ],
+            'quantity' => 1,
+        ];
+        $orderId->details()->create([
+            "product_id" => $product->id,
+            "quantity" => 1,
+            "price" => $product->discount_price,
+        ]);
+        $total_price = $product->discount_price;
+
+        $orderId->update(["total_value" => $total_price]);
+
+
+        # Stripe payload
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+        $session = \Stripe\Checkout\Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => $lineItems,
+            'mode' => 'payment',
+            'success_url' => route('checkout.success', ['order_id' => $orderId->getKey()]),
+            'cancel_url' => route('checkout.cancel'),
+        ]);
+
+        return redirect($session->url);
+    }
 
     public function checkout_save(StoreUserAddressRequest $request)
     {
@@ -25,19 +84,19 @@ class CheckoutController extends Controller
             'zipcode' => $request->zipcode,
         ]);
         $key = $address->getKey();
-//        $this->setAddressKey($key);
-//        $key2 = $this->getAddressKey();
-//        dd($key2);
-//        dd($this->addressId);
+        //        $this->setAddressKey($key);
+        //        $key2 = $this->getAddressKey();
+        //        dd($key2);
+        //        dd($this->addressId);
         $data['address_id'] = $key;
-//        dd($data);
+        //        dd($data);
         return redirect()->route("checkout.create")->with($data);
     }
 
     public function createCheckoutSession(Request $request)
     {
         $address_key = $request->session()->get("address_id");
-//        dd($address_key);
+        //        dd($address_key);
         $total_price = 0;
         $lineItems = [];
         $cartItems = auth()->user()->cart->items;
@@ -84,10 +143,10 @@ class CheckoutController extends Controller
 
     public function success(Request $request)
     {
-//        dd($request->all());
+        //        dd($request->all());
         $order = Order::find($request->order_id);
         $order->update(["payment_status" => "approved"]);
-//        auth()->user()->cart->items->delete();
+        //        auth()->user()->cart->items->delete();
         Alert::success("success", "Your order has been placed successfully . keep checking the order status in your acccount page");
         return redirect()->route("account");
     }

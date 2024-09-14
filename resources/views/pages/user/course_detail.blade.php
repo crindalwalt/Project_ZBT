@@ -122,7 +122,10 @@
                                                 <li><span>Enrolled</span><span
                                                         class="rbt-feature-value rbt-badge-5">{{ "200" }}</span></li>
                                                 <li><span>Duration</span><span
-                                                        class="rbt-feature-value rbt-badge-5">{{ $course->duration }}</span>
+                                                        class="rbt-feature-value rbt-badge-5">{{ $course->duration }} Minutes/Day</span>
+                                                </li>
+                                                <li><span>Total Months</span><span
+                                                        class="rbt-feature-value rbt-badge-5">{{ $course->months }} Months</span>
                                                 </li>
 
                                                 </li>
@@ -266,14 +269,13 @@
                                             <div class="media-body">
                                                 <div class="author-info">
                                                     <h5 class="title">
-                                                        <a class="hover-flip-item-wrapper" href="author.html">B.M.
-                                                            Rafekul Islam</a>
+                                                        <a class="hover-flip-item-wrapper" href="author.html"> Team ZBTI.ORG</a>
                                                     </h5>
                                                     <span class="b3 subtitle">Advanced Educator</span>
                                                     <ul class="rbt-meta mb--20 mt--10">
-                                                        <li><i class="fa fa-star color-warning"></i>75,237 Reviews <span
+                                                    <li><i class="fa fa-star color-warning"></i>172 Reviews <span
                                                                 class="rbt-badge-5 ml--5">4.4 Rating</span></li>
-                                                        <li><i class="feather-users"></i>912,970 Students</li>
+                                                        <li><i class="feather-users"></i>1,970 Students</li>
                                                     </ul>
                                                 </div>
                                                 <div class="content">
