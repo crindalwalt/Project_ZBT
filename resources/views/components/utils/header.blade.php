@@ -367,20 +367,20 @@
                 <div class="content">
                     <div class="logo">
                         <a href="{{ route('home') }}">
-                            <img src="{{ asset('assets/images/logo/logo.png') }}" alt="Education Logo Images">
+                            <img src="{{ asset('assets/long-logo.png') }}" alt="Education Logo Images">
                         </a>
                     </div>
                     <div class="rbt-btn-close">
                         <button class="close-button rbt-round-btn"><i class="feather-x"></i></button>
                     </div>
                 </div>
-                <p class="description">Histudy is a education website template. You can customize all.</p>
+                <p class="description">Zaid Bin Thabit Institude</p>
                 <ul class="navbar-top-left rbt-information-list justify-content-start">
                     <li>
-                        <a href="mailto:hello@example.com"><i class="feather-mail"></i>example@gmail.com</a>
+                        <a href="mailto:hello@example.com"><i class="feather-mail"></i>info@zbti.net</a>
                     </li>
                     <li>
-                        <a href="#"><i class="feather-phone"></i>(+92)0322 6767409</a>
+                        <a href="#"><i class="feather-phone"></i>(+92)322 6767409</a>
                     </li>
                 </ul>
             </div>
@@ -430,11 +430,11 @@
                 <div class="social-share-wrapper">
                     <span class="rbt-short-title d-block">Find With Us</span>
                     <ul class="social-icon social-default transparent-with-border justify-content-start mt--20">
-                        <li><a href="https://www.facebook.com/">
+                        <li><a href="https://www.facebook.com/profile.php?id=61551851218514&mibextid=ZbWKwL">
                                 <i class="feather-facebook"></i>
                             </a>
                         </li>
-                        <li><a href="https://www.twitter.com">
+                        {{-- <li><a href="https://www.twitter.com">
                                 <i class="feather-twitter"></i>
                             </a>
                         </li>
@@ -445,7 +445,7 @@
                         <li><a href="https://www.linkdin.com/">
                                 <i class="feather-linkedin"></i>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </div>

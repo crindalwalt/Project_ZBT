@@ -215,7 +215,7 @@
                                                 <input type="hidden" name="enrollment_id" value="{{ $enrollment->id }}">
 
                                                 <div class="mb-3">
-                                                    <label for="students" class="form-label">Select Students</label>
+                                                    <label for="students" class="form-label">Select Batch</label>
                                                     <select class="form-select w-100" id="students" name="batch">
                                                         @foreach ($batches as $item)
                                                             <option value="{{ $item->id }}">

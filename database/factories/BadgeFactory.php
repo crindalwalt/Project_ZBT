@@ -18,7 +18,7 @@ class BadgeFactory extends Factory
     {
         return [
             "name" => $this->faker->name,
-            'course_id' => $this->faker->numberBetween(1,6),
+            'course_id' => $this->faker->numberBetween(1,4),
             'teacher_id' => "13",
             'class_time' => $this->faker->time(),
         ];

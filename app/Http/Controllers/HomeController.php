@@ -195,4 +195,10 @@ class HomeController extends Controller
         $data['badge'] = $badge;
         return view("pages.user.courses.class")->with($data);
     }
+
+
+
+    public function contact_store (Request $request){
+        dd($request->all());
+    }
 }

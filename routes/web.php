@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'homePage'])->name("home");
 Route::get("/contact", [HomeController::class, 'contact'])->name("contact");
+Route::post("/contact", [HomeController::class, 'contact_store'])->name("contact.store");
 Route::get("/about", [HomeController::class, 'about'])->name("about");
 Route::get("/cart", [HomeController::class, 'cartPage'])->name("cart");
 Route::get("/cart/add/{product:slug}", [HomeController::class, 'addToCart'])->name("addtocart");

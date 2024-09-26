@@ -147,13 +147,13 @@
                                                     <div class="col-lg-6 col-md-6 col-12">
                                                         <div class="rbt-card variation-01 rbt-hover">
                                                             <div class="rbt-card-img">
-                                                                <a href="{{ route('teacher.badge.view', $item->id) }}">
+                                                                <a href="{{ route('badge.create', $item->id) }}">
                                                                     <img src="{{ asset($item->course->image) }}" alt="Card image">
                                                                 </a>
                                                             </div>
                                                             <div class="rbt-card-body">
 
-                                                                <h4 class="rbt-card-title"><a href="{{ route('teacher.badge.view', $item->id) }}">{{ $item->name}}</a>
+                                                                <h4 class="rbt-card-title"><a href="{{ route('badge.create', $item->id) }}">{{ $item->name}}</a>
                                                                 </h4>
                                                                 <ul class="rbt-meta">
                                                                     <li><i class="feather-book"></i>{{ $item->course->title}}</li>

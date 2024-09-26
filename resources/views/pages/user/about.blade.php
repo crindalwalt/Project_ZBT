@@ -73,7 +73,7 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6">
                     <div class="content">
-                        <img src="assets/images/about/about-06.png" alt="About Images">
+                        <img src="{{ asset("storage/CourseImages/4o.png") }}" alt="About Images">
                     </div>
                 </div>
                 <div class="col-lg-6" data-sal="slide-up" data-sal-duration="700">

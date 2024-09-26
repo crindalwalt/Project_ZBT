@@ -140,8 +140,8 @@ class ProductController extends Controller
                 $image = $item;
                 $imageName = "storage/ProductImages/" . "Course_" . time() . "." . $image->extension();
                 $image->storeAs("app/ProductImages", $imageName);
-                $productKey->media()->create([
-                    'image' => $imageName,
+                $product->media()->create([
+                'image' => $imageName,
                 ]);
             }
         }

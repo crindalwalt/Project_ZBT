@@ -19,7 +19,7 @@
             </div>
         </div>
     </div>
-    <!-- End Breadcrumb Area -->    
+    <!-- End Breadcrumb Area -->
 
     <div class="my-account-section bg-color-white rbt-section-gap">
         <div class="container">
@@ -141,7 +141,7 @@
                                                         @endif
                                                         <tr>
                                                             <td>{{ $item->course->title }}</td>
-                                                            <td>Aug 22, 2018</td>
+                                                            <td>{{ \Carbon\Carbon::parse($item->created_at)->format("D d M Y h:i A") }}</td>
                                                             <td>Yes</td>
                                                             <td>
                                                                 @if ($item->enrollment_status == 'active')

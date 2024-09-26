@@ -31,7 +31,6 @@ class CheckoutController extends Controller
 
         $total_price = 0;
         $lineItems = [];
-        $cartItems = auth()->user()->cart->items;
         $orderId = auth()->user()->order()->create([
             'user_address_id' => $key,
             "delivery_status" => "pending",

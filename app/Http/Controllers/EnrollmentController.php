@@ -89,7 +89,7 @@ class EnrollmentController extends Controller
         ]);
         $course->students()->create([
             "user_id" => auth()->user()->id,
-            "status" => "active",
+            "status" => "pending",
         ]);
 
         Alert::success("Enrollment Success", "Your student dashboard will list all of your classes and enrollment");

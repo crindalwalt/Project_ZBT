@@ -143,11 +143,11 @@
                                             <div
                                                 class="rbt-post-share d-flex align-items-center justify-content-center">
                                                 <ul class="social-icon social-default transparent-with-border justify-content-center">
-                                                    <li><a href="https://www.facebook.com/">
+                                                    <li><a href="https://www.facebook.com/profile.php?id=61551851218514&mibextid=ZbWKwL">
                                                             <i class="feather-facebook"></i>
                                                         </a>
                                                     </li>
-                                                    <li><a href="https://www.twitter.com">
+                                                    {{-- <li><a href="https://www.twitter.com">
                                                             <i class="feather-twitter"></i>
                                                         </a>
                                                     </li>
@@ -158,15 +158,14 @@
                                                     <li><a href="https://www.linkdin.com/">
                                                             <i class="feather-linkedin"></i>
                                                         </a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                             <hr class="mt--20">
                                             <div class="contact-with-us text-center">
                                                 <p>For details about the course</p>
                                                 <p class="rbt-badge-2 mt--10 justify-content-center w-100"><i
-                                                        class="feather-phone mr--5"></i> Call Us: <a href="#"><strong>+444
-                                                            555 666 777</strong></a></p>
+                                                        class="feather-phone mr--5"></i> Call Us: <a href="tel:+923226767409"><strong>+923226767409</strong></a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -284,11 +283,11 @@
                                                         education for you</p>
 
                                                     <ul class="social-icon social-default icon-naked justify-content-start">
-                                                        <li><a href="https://www.facebook.com/">
+                                                        <li><a href="https://www.facebook.com/profile.php?id=61551851218514&mibextid=ZbWKwL">
                                                                 <i class="feather-facebook"></i>
                                                             </a>
                                                         </li>
-                                                        <li><a href="https://www.twitter.com">
+                                                        {{-- <li><a href="https://www.twitter.com">
                                                                 <i class="feather-twitter"></i>
                                                             </a>
                                                         </li>
@@ -299,7 +298,7 @@
                                                         <li><a href="https://www.linkdin.com/">
                                                                 <i class="feather-linkedin"></i>
                                                             </a>
-                                                        </li>
+                                                        </li> --}}
                                                     </ul>
 
                                                 </div>

@@ -10,10 +10,8 @@
                             <div class="rbt-new-badge rbt-new-badge-one">
                                 <span class="rbt-new-badge-icon">🏆</span> The Leader in Online Quranic Learning
                             </div>
-                            <h1 class="title">The Largest <span class="color-primary">Online Learning</span> Platform
-                                for Drive Your Career.</h1>
-                            <p class="description">This template includes all the necessary pages of the onlineLorem.
-                                And you can be build a <strong>education template easily</strong>.
+                            <h1 class="title"><span class="color-primary">Zaid Bin Thabith</span> Quran Academy</h1>
+                            <p class="description">Zaid Bin Thabit Institute: A Worldwide Beacon of Knowledge, connecting every heart to the Divine Message. Discover the Quran’s wisdom and master the Arabic language.</strong>.
                             </p>
                             <div class="slider-btn">
                                 <a class="rbt-btn btn-gradient hover-icon-reverse" href="{{ route("courses") }}">
@@ -151,7 +149,7 @@
             <div class="row g-5">
                 @foreach($courses as $item)
                     <!-- Start Single Course  -->
-                    <div class="col-lg-4 col-md-6 col-sm-12 col-12" data-sal-delay="150" data-sal="slide-up"
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12" data-sal-delay="150" data-sal="slide-up"
                         data-sal-duration="800">
                         <div class="rbt-card variation-01 rbt-hover">
                             <div class="rbt-card-img">
@@ -170,7 +168,7 @@
 
                                 <ul class="rbt-meta">
                                     <li><i class="feather-book"></i>{{ $item->language }}</li>
-                                    <li><i class="feather-users"></i>50 Students</li>
+                                    <li><i class="feather-users"></i>50+ Students</li>
                                 </ul>
 
 

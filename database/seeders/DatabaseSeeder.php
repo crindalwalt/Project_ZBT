@@ -14,7 +14,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
+        // User::factory(10)->create();
+
+
+        User::factory()->create([
+            'name' => 'User1',
+            'email' => 'shahzadfarooqdev@gmail.com',
+            "role" => 1,
+        ]);
+        User::factory()->create([
+            'name' => 'User 2',
+            'email' => 'crindalwalt1@gmail.com',
+            'role' => 1,
+        ]);
+        User::factory()->create([
+            'name' => 'User 3',
+            'email' => 'crindalwalt774@gmail.com',
+            "role" => 1,
+        ]);
 
         User::factory()->create([
             'name' => 'User khan',
@@ -37,13 +54,13 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CourseSeeder::class,
             ProductSeeder::class,
-            ProductReviewsSeeder::class,
+            // ProductReviewsSeeder::class,
             CategorySeeder::class,
-            CartSeeder::class,
-            OrderSeeder::class,
-            BadgeSeeder::class,
-            BadgeStudentsSeeder::class,
-            EnrollmentSeeder::class,
+            // CartSeeder::class,
+            // OrderSeeder::class,
+            // BadgeSeeder::class,
+            // BadgeStudentsSeeder::class,
+            // EnrollmentSeeder::class,
         ]);
     }
 }

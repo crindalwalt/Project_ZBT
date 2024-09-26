@@ -65,8 +65,9 @@
                             <span class="subtitle bg-primary-opacity">EDUCATION FOR EVERYONE</span>
                         </div>
                         <h3 class="title">Get a Free Course You Can Contact With Me</h3>
-                        <form id="contact-form" method="POST" action="mail.php"
+                        <form  action="{{ route("contact.store") }}" method="POST"
                               class="rainbow-dynamic-form max-width-auto">
+                              @csrf
                             <div class="form-group">
                                 <input name="contact-name" id="contact-name" type="text">
                                 <label>Name</label>
@@ -88,14 +89,15 @@
                                 <span class="focus-border"></span>
                             </div>
                             <div class="form-submit-group">
-                                <button name="submit" type="submit" id="submit"
-                                        class="rbt-btn btn-md btn-gradient hover-icon-reverse w-100">
-                                    <span class="icon-reverse-wrapper">
+                                <input name="submit" type="submit"
+                                        class="rbt-btn btn-md btn-gradient hover-icon-reverse w-100" value="Send Message Now">
+                                        {{-- Send Message --}}
+                                    {{-- <span class="icon-reverse-wrapper">
                                         <span class="btn-text">GET IT NOW</span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                    </span>
-                                </button>
+                                    </span> --}}
+
                             </div>
                         </form>
                     </div>

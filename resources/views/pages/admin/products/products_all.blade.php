@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    
+
 
                     <div class="row g-5">
                         <div class="col-lg-3">
@@ -69,7 +69,8 @@
                                                                 {{--  TODO: update student info--}}
                                                                 <ul class="rbt-meta">
 {{--                                                                    <li><i class="feather-calendar"></i>{{ $item->duration }} Months</li>--}}
-                                                                    <li><i class="feather-users"></i>40 Orders</li>
+                                                                    <li><i class="feather-users"></i>
+                                                                        {{ count($item->orders) }} Orders</li>
                                                                 </ul>
 
                                                                 <div class="rbt-card-bottom d-flex flex-column justify-content-start">
